@@ -43,8 +43,14 @@ public class Transaction {
  
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
       
-        
-        record = "transaction id #" + id + ":  monkey #" + m.getId() + " sold by merchant #" + mm.getMerchantId() + " to ssn #" + t.getSSN() + " for $" + m.getPrice() + ", an increase of " + increaseAmount + "%";
+       
+                String temp1 = "transaction id #" + id + ":  monkey #" + m.getId() + "\nsold by merchant #" + mm.getMerchantId() 
+                    + " to ssn #" + t.getSSN() + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
+                String temp2 = "transaction id #" + id + ":  monkey #" + m.getId() + "sold by merchant #" + mm.getMerchantId() 
+                + " to ssn #" + t.getSSN() + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
+                String temp3 = "trans id #" + id + "  monkey #" + m.getId() + " merchant #" + mm.getMerchantId() 
+                + "   ssn #" + t.getSSN() + "for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
+        record = temp3;
      
   } 
     public String printTransactionRecord(){

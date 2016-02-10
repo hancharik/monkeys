@@ -6,19 +6,22 @@
 package pkg100monkeys;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 /**
  *
  * @author mah537
  */
-public class Monkey {
+public class Monkey extends JButton{
     
     private int monkeyId;
     private int price;
+    private int rateOfGrowth = 100;
     private ArrayList<Transaction> transactionHistory;
     
     public Monkey(int number){
        
+        setRateOfGrowth(100);
         transactionHistory = new ArrayList<Transaction>();
        monkeyId = number + 1; 
        // we could set this as a variable, right now we just start at 100 dollars
@@ -30,7 +33,7 @@ public class Monkey {
     
  public int increasePrice(){
      
-     int increase = (int)(Math.random()*100) + 100;
+     int increase = (int)(Math.random()*rateOfGrowth) + 100;
      int newprice = (price * increase)/100;
      
      System.out.print("monkey #" + monkeyId + " was $" + price );
@@ -40,7 +43,13 @@ public class Monkey {
      return increase;
  } 
  
- 
+ public void setRateOfGrowth(int r){
+     int rateCap = 1000;
+     if(rateOfGrowth > 0 && rateOfGrowth < rateCap){
+     rateOfGrowth = r;
+     System.out.println("rate of growth is " + rateOfGrowth);
+     }
+ }
  
  
      public void increasePriceOldWay(){
@@ -84,7 +93,31 @@ public class Monkey {
        
    }  // end print transaction
      
-   
+      public ArrayList<String> transactionArray(){
+         
+       ArrayList<String> transactionList = new ArrayList();
+   // if there is at least one transaction, generate visible banner
+   if(transactionHistory.size() > 0){
+     for(int i = 0; i < 1; i++){
+         String temp1 = "//////////////monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////";
+       System.out.println(temp1); 
+       transactionList.add(temp1);
+     }
+   }          
+        
+            
+      for(int i = 0; i <  transactionHistory.size(); i++){
+          String temp2 = transactionHistory.get(i).printTransactionRecord();
+          System.out.println(temp2); 
+          transactionList.add(temp2);
+           
+     }
+      
+      return transactionList;
+       
+   }  // end print transaction
+      
+      
   public boolean hasPapers(){
       
     boolean paper = false;  

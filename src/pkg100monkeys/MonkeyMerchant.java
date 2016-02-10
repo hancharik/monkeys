@@ -59,7 +59,13 @@ public class MonkeyMerchant{
       
   } 
    
-   
+  public int getNumberOfReceipts(){
+      
+      int number = receipts.size() - 1; //you have to subtract one, as the first element is the header. we should change that
+      
+      
+      return number;
+  } 
    
    
 } // end class

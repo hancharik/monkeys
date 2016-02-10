@@ -148,6 +148,21 @@ public class MonkeyMarket {
        
        
       return peepsWithMonkeys;
-  } 
+  }   // end people who own monkeys
+   
+      public ArrayList merchantsWithSales(){
+      
+       ArrayList<MonkeyMerchant> mercsWithSales = new ArrayList<MonkeyMerchant>();
+       
+       for(int i = 0; i < monkeyMerchants.size(); i++){
+        if(monkeyMerchants.get(i).getNumberOfReceipts() > 0){
+           mercsWithSales.add(monkeyMerchants.get(i));
+        }
+     }
+       
+       
+       
+      return mercsWithSales;
+  }   // end people who own monkeys
      
 }  // end class
