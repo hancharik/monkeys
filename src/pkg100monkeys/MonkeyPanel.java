@@ -45,7 +45,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     int numberOfMerchants = 10;
     int numberOfTownsPeople = 100;
     int numberOfTransactions = 1;
-    int theme = 10;
+    int theme = 1;
     int growthRate = 100;
     int saleCount = 0;
     int numMonkeyz = 0;
@@ -86,6 +86,7 @@ private void createUI(){
     monkeyPictureButton = new JButton("new");
     monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
     monkeyPictureButton.setBounds(728,364,120,120);
+   monkeyPictureButton.setBackground(randomColor(theme));
     monkeyPictureButton.addActionListener(this);
     add(monkeyPictureButton);
     
@@ -168,6 +169,7 @@ private void makeMonkeyPanels(){
 
 private void removeMonkeyPanels(){
     monkeyPictureButton.setVisible(false);
+    trustTheMonkeysLabel.setVisible(false);
       remove(monkeyMerchantPanel);
      remove(monkeyPanel);
      remove(peopleWithMonkeysPanel);
@@ -187,10 +189,19 @@ private JPanel monkeyPanel(){
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());
        monkPan.add( monkeyButtons.get(i));
     }
+    colorSoldMonkeys();
    return monkPan;
 } // end monkey panel
 
-
+private void colorSoldMonkeys(){
+   for(int i = 0; i < monkeyButtons.size(); i++){
+        if(!monkeyButtons.get(i).openMarketMonkey()){
+         monkeyButtons.get(i).setColor(Color.RED);
+        monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());   
+        }
+    } 
+    
+}
 
  private JPanel peopleWithMonkeysPanel(){
      JPanel peepsWithMonkPan = new JPanel();
@@ -282,6 +293,7 @@ private JPanel monkeyPanel(){
                     showText.setBackground(Color.yellow);
                     titleLabel.setVisible(true);
                    monkeyPictureButton.setVisible(true);
+                   trustTheMonkeysLabel.setVisible(true);
                    startButton.setVisible(false);
                     makeMonkeyPanels();
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";

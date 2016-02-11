@@ -34,6 +34,7 @@ public class Transaction {
       
      monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
      monkeyMerchant.recordTransaction(this);
+     monkey.newHome(townsFolk);
      monkey.recordTransaction(this);
      townsFolk.recordTransaction(this);
       System.out.println("transaction id#" + transactionId + " generated");
