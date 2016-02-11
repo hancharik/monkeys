@@ -73,17 +73,17 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         
     private void createPanel() {
         
-    sliderOfMerchants = new JSlider();
-    sliderOfTownsPeople = new JSlider();
-    sliderOfTransactions = new JSlider();
+    sliderOfMerchants = new JSlider(JSlider.HORIZONTAL, 0, 10, monkeyPanel.numberOfMerchants);
+    sliderOfTownsPeople = new JSlider(JSlider.HORIZONTAL, 0, 100, monkeyPanel.numberOfTownsPeople);
+    sliderOfTransactions = new JSlider(JSlider.HORIZONTAL, 0, 1000, monkeyPanel.numberOfTransactions);
     
     sliderOfMerchants.addChangeListener(this);
     sliderOfTownsPeople.addChangeListener(this);
     sliderOfTransactions.addChangeListener(this);
     
-    labelOfMerchants = new JLabel("<html><h2><font color='black'>Merchants: </font><font color='red'></font><h2></html>");
-    labelOfTownsPeople = new JLabel("<html><h2><font color='black'>Townspeople: </font><font color='red'></font><h2></html>");
-    labelOfTransactions = new JLabel("<html><h2><font color='black'>Transactions: </font><font color='red'></font><h2></html>");
+    labelOfMerchants = new JLabel("<html><h2><font color='black'>Merchants: </font><font color='red'>" + monkeyPanel.numberOfMerchants + "</font><h2></html>");
+    labelOfTownsPeople = new JLabel("<html><h2><font color='black'>Townspeople: </font><font color='red'>" + monkeyPanel.numberOfTownsPeople + "</font><h2></html>");
+    labelOfTransactions = new JLabel("<html><h2><font color='black'>Transactions: </font><font color='red'>" + monkeyPanel.numberOfTransactions + "</font><h2></html>");
         
       
       add(labelOfMerchants);
