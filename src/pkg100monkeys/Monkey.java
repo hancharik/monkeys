@@ -102,7 +102,7 @@ public class Monkey extends JButton{
    // if there is at least one transaction, generate visible banner
    if(transactionHistory.size() > 0){
      for(int i = 0; i < 2; i++){
-       System.out.println("//////////////monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////"); 
+       System.out.println("//////////////  monkey #" + price + " has " + transactionHistory.size() + " transactions....////////////////"); 
      }
    }          
         
@@ -121,7 +121,7 @@ public class Monkey extends JButton{
    // if there is at least one transaction, generate visible banner
    if(transactionHistory.size() > 0){
      for(int i = 0; i < 1; i++){
-         String temp1 = "//////////////monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////";
+         String temp1 = "//////////////   monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////";
        System.out.println(temp1); 
        transactionList.add(temp1);
      }
@@ -134,7 +134,8 @@ public class Monkey extends JButton{
           transactionList.add(temp2);
            
      }
-      
+      String temp11 = "//////////////   worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    ////////////////";
+      transactionList.add(temp11);
       return transactionList;
        
    }  // end transaction array
