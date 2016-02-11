@@ -25,6 +25,7 @@ public class Monkey extends JButton{
     private ArrayList<Transaction> transactionHistory;
     private Color color;
     private String fullName;
+    private int primeMonkeyIndicator; // 100 is 100%, 101 is inflation, 99 is contraction of overall economy
     
     
     public Monkey(int number){
@@ -39,6 +40,7 @@ public class Monkey extends JButton{
     private void makeMonkey(){
         
         rateOfGrowth = 100;
+        primeMonkeyIndicator = 100;
         levelOfDisease = 0;
         owner = null;
         openMarketMonkey = true;
@@ -60,7 +62,7 @@ public class Monkey extends JButton{
     
  public int increasePrice(int rg){
      setRateOfGrowth(rg);
-     int increase = (int)(Math.random()*rateOfGrowth) + 100;
+     int increase = (int)(Math.random()*rateOfGrowth) + primeMonkeyIndicator;
      int newprice = (price * increase)/100;
      
      System.out.print("monkey #" + monkeyId + " was $" + price );
@@ -215,14 +217,23 @@ public class Monkey extends JButton{
   private String nameMonkey(Boolean isMonkey){
       
       String title = "";
+      String endTitle = "";
       String fName = "";
       String mName = "";
       String lName = "";
       String fullName = "";
-      
+      boolean hasTitle = false;
       fullName = title + fName + mName + lName;
-      
+      int percentage  = (int)(Math.random( )*100)+1;
       int titleChoice = (int)(Math.random( )*20)+1;
+      int endTitleChoice = (int)(Math.random( )*20)+1;
+      if(percentage < 30){
+        hasTitle = true;  
+      }
+      percentage  = (int)(Math.random( )*100)+1;
+      if(percentage < 30){
+       endTitleChoice = 11; // 11 is blank  
+      }
       int firstNameChoice = (int)(Math.random( )*20)+1;
       int lastNameChoice = (int)(Math.random( )*20)+1;
       int middleNameChoice = 1;
@@ -252,20 +263,20 @@ public class Monkey extends JButton{
           case 4: title = "Mr."; break;  
           case 5: title = "Ms."; break;  
           case 6: title = "Little"; break;  
-          case 7: title = ""; break;
-          case 8: title = "Dr."; break;  
+          case 7: title = "Dr."; break;
+          case 8: title = ""; break;  
           case 9: title = ""; break;
           case 10: title = ""; break;  
           case 11: title = ""; break;
-          case 12: title = ""; break;  
-          case 13: title = ""; break;  
+          case 12: title = ""; break;
+          case 13: title = "King of All Media"; break;  
           case 15: title = ""; break;  
           case 16: title = ""; break;  
-          case 17: title = ""; break;
-          case 18: title = "Dr."; break;  
+          case 17: title = "World's Greatest Monkey"; break;
+          case 18: title = ""; break;  
           case 19: title = ""; break;
-          case 20: title = ""; break;  
-          case 21: title = "Little Missy"; break;
+          case 20: title = "King of Monsters"; break;   
+          case 21: title = ""; break;
       }
       switch(firstNameChoice){
           case 1: fName = ""; break;  // monkeys usually don't have first names
@@ -337,9 +348,43 @@ public class Monkey extends JButton{
           case 21: lName = "Baldwin"; break;
       }
       
- 
-      checkForDuplicateNames();
-      fullName = title  + " " +fName + " " + mName + " " + lName;
+   switch(endTitleChoice){
+          case 1: endTitle = "Jr."; break;
+          case 2: endTitle = "Sr."; break;  
+          case 3: endTitle = "II"; break;  
+          case 4: endTitle = "2.0"; break;  
+          case 5: endTitle = "III"; break;  
+          case 6: endTitle = "Lord of Scotland"; break;  
+          case 7: endTitle = "IV"; break;
+          case 8: endTitle = ""; break;  
+          case 9: endTitle = ""; break;
+          case 10: endTitle = ""; break;  
+          case 11: endTitle = ""; break;
+          case 12: endTitle = ""; break;
+          case 13: endTitle = "King of All Media"; break;  
+          case 15: endTitle = "IV"; break;  
+          case 16: endTitle = "III"; break;  
+          case 17: endTitle = "Esq."; break;
+          case 18: endTitle = "Jr."; break;  
+          case 19: endTitle = ""; break;
+          case 20: endTitle = "King of Monsters"; break;   
+          case 21: endTitle = ""; break;
+      }
+      
+      // this is to eliminate a spacing problem
+      if(hasTitle){
+          fullName = title  + " " +fName + " " + mName + " " + lName  + " " + endTitle ;
+      }else{
+          
+         fullName = fName + " " + mName + " " + lName  + " " + endTitle ; 
+      }
+      
+      
+      
+      
+      
+      
+      
       checkForDuplicateNames();
       return fullName;
   } // end nameMonkey

@@ -62,15 +62,23 @@ public class Transaction {
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
       
         String space = "";// String space = "\t";
+       String whatDoWeCallPeople = "";
+       
+       if(market.weRespectYourPrivacy()){
+             whatDoWeCallPeople = " to ssn #" + t.getSSN();
+         }else{
+           whatDoWeCallPeople = " to villager #" + t.getSSN();
+         }
+       
        
                 String temp1 = space + "transaction id #" + id + ":  " + m.getName() + "\nsold by merchant #" + mm.getMerchantId() 
-                    + " to ssn #" + t.getSSN() + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
+                    + whatDoWeCallPeople + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
                 String temp2 = space + "transaction id #" + id + ":  " + m.getName() +  "sold by merchant #" + mm.getMerchantId() 
-                + " to ssn #" + t.getSSN() + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
+                + whatDoWeCallPeople + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
                 String temp3 = space + "trans id #" + id + "  " + m.getName() + " merchant #" + mm.getMerchantId() 
-                + "   ssn #" + t.getSSN() + " for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
+                + whatDoWeCallPeople + " for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
                 String temp4 = space + "trans id # " + id + "\t" + m.getName() +   "\tmerchant # " + mm.getMerchantId() 
-                + "\tssn # " + t.getSSN() + "\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
+                + "\t" + whatDoWeCallPeople +"\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
         record = temp4;
      
   } 

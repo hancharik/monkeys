@@ -38,7 +38,7 @@ public class TownsFolk extends JButton{
          if(uniqueID){
              ssn = setSSN(); 
          }else{
-            ssn = id;
+            ssn = id + 1;
          }
        
        
@@ -97,9 +97,16 @@ public class TownsFolk extends JButton{
        ArrayList<String> transactionList = new ArrayList();
    // if there is at least one transaction, generate visible banner
    if(transactionHistory.size() > 0){
-     
-         String temp1 = "//////////////ssn #" + ssn + " has bought " + transactionHistory.size() + " monkeys....////////////////";
-         String temp11 = "//////////////ssn #" + ssn + " has " + monkeys.size() + " monkeys....////////////////";
+     String temp1;
+     String temp11;
+       if(uniqueID){
+             temp1 = "//////////////ssn #" + ssn + " has bought " + transactionHistory.size() + " monkeys....////////////////";
+         temp11 = "//////////////ssn #" + ssn + " has " + monkeys.size() + " monkeys....////////////////";
+         }else{
+            temp1 = "//////////////villager #" + ssn + " has bought " + transactionHistory.size() + " monkeys....////////////////";
+         temp11 = "//////////////villager #" + ssn + " has " + monkeys.size() + " monkeys....////////////////";
+         }
+        ;
        System.out.println(temp1); 
        transactionList.add(temp1);
        

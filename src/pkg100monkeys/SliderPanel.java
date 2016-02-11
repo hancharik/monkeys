@@ -33,6 +33,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     JLabel labelOfTownsPeople;
     JLabel labelOfTransactions;
     JPanel themeDemonstrator;
+     JPanel themeDemonstrator2;
     
     ArrayList<JButton> themeDemoButtons;
     ArrayList<JSlider> sliders;
@@ -45,7 +46,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
        
         monkeyPanel = mp;
         
-        setLayout(new GridLayout(11, 1));
+        setLayout(new GridLayout(12, 1));
         setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
          
          
@@ -89,7 +90,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
             colorButtons();
             setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
             monkeyPanel.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
-            monkeyPanel.startButton.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+            //monkeyPanel.startButton.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
             monkeyPanel.startButton.setVisible(true);
         }
     }
@@ -124,6 +125,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     themeDemoButtons = new ArrayList();
     sliders = new ArrayList();
     themeDemonstrator = createThemeDemoButtons();
+    themeDemonstrator2 = createThemeDemoButtons2();
         
         
     sliderOfMerchants = new JSlider(JSlider.HORIZONTAL, 1, 10, monkeyPanel.numberOfMerchants);
@@ -176,6 +178,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
       add(sliderOfTownsPeople);
       add(labelOfTransactions);
       add(sliderOfTransactions);
+      add(themeDemonstrator2);
         
         
         
@@ -194,7 +197,19 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         colorButtons();
         return yoyo;
     }
-    
+      
+    private JPanel createThemeDemoButtons2(){
+        
+        JPanel yoyo = new JPanel();
+        yoyo.setLayout(new GridLayout(1, 10));
+        for(int yy = 10; yy < 20; yy++){
+            JButton jb = new JButton();
+            themeDemoButtons.add(jb);
+            yoyo.add(themeDemoButtons.get(yy));
+        }
+        colorButtons();
+        return yoyo;
+    }  
 public void colorButtons(){
     
     for(int y = 0; y < themeDemoButtons.size(); y++){

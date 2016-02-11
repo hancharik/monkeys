@@ -11,12 +11,10 @@ package pkg100monkeys;
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
+    static MonkeyFrame monkeyTown2;
     public static void main(String[] args) {
       // MonkeyMarket monkeyTown = new MonkeyMarket();
-       MonkeyFrame monkeyTown2 = new MonkeyFrame();
+       monkeyTown2 = new MonkeyFrame();
     }
     
 }

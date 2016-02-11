@@ -114,14 +114,39 @@ private void createUI(){
     showNamesButton.addActionListener(this);
     add(showNamesButton);
     
+    
+    
+    
+    
+    
+       ///////////////////////////////////////////////////////  
+    ///////////////////////////////////////////////////////
+    ///////// this is a group
+    
+    
     startButton = new JButton("start");
-    startButton.setBounds(948,244,160,40);
-    startButton.setBackground(randomColor(theme));
+    startButton.setBounds(888,244,120,40);
+    startButton.setBackground(Color.yellow);//.setBackground(randomColor(theme));
     startButton.setVisible(false);
     startButton.addActionListener(this);
     add(startButton);
       
-      
+     runTimerButton = new JButton("run timer");
+     runTimerButton.setBounds(1040,244,120,40);
+     runTimerButton.setBackground(Color.yellow);
+     runTimerButton.setVisible(false);
+     runTimerButton.addActionListener(this);
+    add( runTimerButton);
+    
+    
+     
+    ///////// this is a group
+       ///////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////
+    
+    
+    
+    
   
      makeMonkeyPanels();
  
@@ -152,13 +177,7 @@ private void createUI(){
     quickSimButton.addActionListener(this);
     add(quickSimButton);
 
-         runTimerButton = new JButton("run timer");
-    //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
-     runTimerButton.setBounds(718,354,160,40);
-     runTimerButton.setBackground(Color.yellow);
-   //quickSimButton.setBackground(randomColor(theme));
-     runTimerButton.addActionListener(this);
-    add( runTimerButton);
+ 
     ///////// this is a group
        ///////////////////////////////////////////////////////
  ///////////////////////////////////////////////////////
@@ -259,9 +278,10 @@ private void makeMonkeyPanels(){
 
 
 private void removeMonkeyPanels(){
-    runTimerButton.setVisible(false);
+    runTimerButton.setVisible(true);
     quickSimButton.setVisible(false);
     trustTheMonkeysLabel.setVisible(false);
+    showNamesButton.setVisible(false);
       remove(monkeyMerchantPanel);
      remove(monkeyPanel);
      remove(peopleWithMonkeysPanel);
@@ -411,11 +431,12 @@ private void colorSoldMonkeys(){
                     titleLabel.setVisible(true);
                      quickSimButton2.setVisible(true);
                    quickSimButton.setVisible(true);
-                   runTimerButton.setVisible(true);
+                   runTimerButton.setVisible(false);
                    trustTheMonkeysLabel.setVisible(true);
                    startButton.setVisible(false);
                    showPeopleButton.setVisible(false);
                    showTransButton.setVisible(true);
+                   showNamesButton.setVisible(true);
                     makeMonkeyPanels();
                     scroll.setBounds(758,6,520,220);
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
@@ -468,12 +489,8 @@ private void colorSoldMonkeys(){
                 
                  if (obj == runTimerButton){
 
-                    showPeople();
-                    showTransButton.setVisible(false);
-                     startButton.setVisible(true);
-                    removeMonkeyPanels();
-                    String bannre3 = "<html><h2><font color='blue'>" +  "monkey time!"  + "</font><font color='red'>" +  "   monkey monkey!" + "</font><h1></html>";
-                   numberOfMonkeysLabel.setText(bannre3); 
+                    
+                     // run the monkey economy on a timer
 
                 }
                 for(int i = 0; i < monkeyButtons.size(); i++){

@@ -190,6 +190,13 @@ public class MonkeyMarket {
       return mercsWithSales;
   }   // end people who own monkeys
 
+     
+          public boolean weRespectYourPrivacy(){
+          
+          
+          return respectForPrivacy;
+      }  // end get growth rate
+      
       
       public int getGrowthRate(){
           
