@@ -17,6 +17,10 @@ public class Monkey extends JButton{
     private int monkeyId;
     private int price;
     private int rateOfGrowth = 100;
+    private int levelOfDisease;
+    private TownsFolk owner;
+    private Boolean openMarketMonkey;
+    private int mojo;
     private ArrayList<Transaction> transactionHistory;
     
     public Monkey(int number){
