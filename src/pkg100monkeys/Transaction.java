@@ -33,6 +33,7 @@ public class Transaction {
   public void generateTransaction(){
       
      monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
+     monkeyMerchant.recordTransaction(this);
      monkey.recordTransaction(this);
      townsFolk.recordTransaction(this);
       System.out.println("transaction id#" + transactionId + " generated");
@@ -49,8 +50,10 @@ public class Transaction {
                 String temp2 = "transaction id #" + id + ":  monkey #" + m.getId() + "sold by merchant #" + mm.getMerchantId() 
                 + " to ssn #" + t.getSSN() + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
                 String temp3 = "trans id #" + id + "  monkey #" + m.getId() + " merchant #" + mm.getMerchantId() 
-                + "   ssn #" + t.getSSN() + "for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
-        record = temp3;
+                + "   ssn #" + t.getSSN() + " for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
+                String temp4 = "trans id # " + id + "\tmonkey # " + m.getId() + "\tmerchant # " + mm.getMerchantId() 
+                + "\tssn # " + t.getSSN() + "\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
+        record = temp4;
      
   } 
     public String printTransactionRecord(){

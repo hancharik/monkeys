@@ -115,7 +115,7 @@ public class Monkey extends JButton{
       
       return transactionList;
        
-   }  // end print transaction
+   }  // end transaction array
       
       
   public boolean hasPapers(){

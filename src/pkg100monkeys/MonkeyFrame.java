@@ -30,7 +30,7 @@ public class MonkeyFrame extends JFrame{
                 getContentPane().add(buttonPanel,"Center");
                //getContentPane().add(main,"Center");
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize (1000,1000);//setSize (1920, 1000);
+		setSize (1366, 768);//setSize (1920, 1000);1366x768
 		setVisible(true);
     }
     
