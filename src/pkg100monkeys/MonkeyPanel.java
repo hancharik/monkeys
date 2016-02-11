@@ -32,10 +32,13 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
     ArrayList<TownsFolk> peopleButtons;
     ArrayList<MonkeyMerchant> experiencedSellers;
+    ArrayList<MonkeyMerchant> merchantButtons;
     ArrayList<Monkey> monkeyButtons;
     ArrayList<Transaction> transactions;
     
-    JButton monkeyPictureButton;
+    JButton quickSimButton;
+    JButton runTimerButton;
+    JButton quickSimButton2;
     JButton startButton;
     JButton showTransButton;
     JButton showPeopleButton;
@@ -87,28 +90,24 @@ private void createUI(){
     add(sliderPanel);
     
     showPeopleButton = new JButton("show people");
-    showPeopleButton.setBounds(696,244,160,40);
+    showPeopleButton.setBounds(718,404,160,40);
     showPeopleButton.setBackground(Color.yellow);
     showPeopleButton.setVisible(false);
     showPeopleButton.addActionListener(this);
     add(showPeopleButton);
     
     showTransButton = new JButton("show transactions");
-    showTransButton.setBounds(696,244,160,40);
+    showTransButton.setBounds(718,404,160,40);
     showTransButton.setBackground(Color.yellow);
     //showTransButton.setVisible(false);
     showTransButton.addActionListener(this);
     add(showTransButton);
     
-    monkeyPictureButton = new JButton("new");
-    monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
-    monkeyPictureButton.setBounds(712,364,120,120);
-   monkeyPictureButton.setBackground(randomColor(theme));
-    monkeyPictureButton.addActionListener(this);
-    add(monkeyPictureButton);
+    
     
     startButton = new JButton("start");
-    startButton.setBounds(948,244,80,40);
+    startButton.setBounds(948,244,160,40);
+    startButton.setBackground(randomColor(theme));
     startButton.setVisible(false);
     startButton.addActionListener(this);
     add(startButton);
@@ -123,13 +122,64 @@ private void createUI(){
     numberOfMonkeysLabel = new JLabel("");
     numberOfMonkeysLabel.setBounds(920,84,420,42);
     add(numberOfMonkeysLabel);
+    
+    
+    
+    
+    
+   ///////////////////////////////////////////////////////  
+    ///////////////////////////////////////////////////////
+    ///////// this is a group
+    
     trustTheMonkeysLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
-    trustTheMonkeysLabel.setBounds(694,304,420,42);
+    trustTheMonkeysLabel.setBounds(700,244,420,42);
     add(trustTheMonkeysLabel);
+    
+    quickSimButton = new JButton("new quick sim");
+    //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
+    quickSimButton.setBounds(718,304,160,40);
+    quickSimButton.setBackground(Color.yellow);
+   //quickSimButton.setBackground(randomColor(theme));
+    quickSimButton.addActionListener(this);
+    add(quickSimButton);
+
+         runTimerButton = new JButton("run timer");
+    //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
+     runTimerButton.setBounds(718,354,160,40);
+     runTimerButton.setBackground(Color.yellow);
+   //quickSimButton.setBackground(randomColor(theme));
+     runTimerButton.addActionListener(this);
+    add( runTimerButton);
+    ///////// this is a group
+       ///////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////
+ 
+
+ 
+ 
+ 
+   ///////////////////////////////////////////////////////  
+    ///////////////////////////////////////////////////////
+    ///////// this is a group
+ 
     titleLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
-    titleLabel.setBounds(1014,14,180,40);
+    titleLabel.setBounds(940,14,180,40);
     titleLabel.setBackground(Color.yellow);
     add(titleLabel);
+    
+      quickSimButton2 = new JButton("monkey pic 2");
+    quickSimButton2.setIcon(new ImageIcon("images/monkey.jpg"));
+    quickSimButton2.setBounds(958,64,120,120);
+   quickSimButton2.setBackground(randomColor(theme));
+    quickSimButton2.addActionListener(this);
+    add(quickSimButton2);
+ 
+    ///////// this is a group
+       ///////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////
+ 
+    
+    
     
     
     showText = new JTextArea();
@@ -137,7 +187,7 @@ private void createUI(){
     showText.setBackground(Color.yellow);
     scroll = new JScrollPane (showText, 
    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scroll.setBounds(824,6,520,220);
+    scroll.setBounds(758,6,520,220);
     add(scroll);
     
     
@@ -152,16 +202,24 @@ private void createUI(){
 private void makeMonkeyPanels(){
     
     
-    sliderPanel.setVisible(false);
+  
     
     
     monkeyTown = new MonkeyMarket(numberOfMerchants, numberOfTownsPeople, numberOfTransactions, growthRate);  // this generates the data in the game
+    
+    
+    
+    
+       ///////////////////////////////////////////////////////  
+    ///////////////////////////////////////////////////////
+    ///////// this is a group
+    
     
     monkeyPanel = monkeyPanel();
     monkeyPanel.setBounds(6,6,680,580);
     
     peopleWithMonkeysPanel = peopleWithMonkeysPanel();
-    peopleWithMonkeysPanel.setBounds(900,240,420,420);
+    peopleWithMonkeysPanel.setBounds(920,280,420,420);
     
     monkeyMerchantPanel = merchantPanel();
     monkeyMerchantPanel.setBounds(6,640,680,60);
@@ -171,7 +229,12 @@ private void makeMonkeyPanels(){
      add(peopleWithMonkeysPanel);
      add(monkeyMerchantPanel);
      
-  
+     ///////// this is a group
+       ///////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////
+ 
+ 
+      sliderPanel.setVisible(false);
      
     repaint();
     
@@ -187,7 +250,8 @@ private void makeMonkeyPanels(){
 
 
 private void removeMonkeyPanels(){
-    monkeyPictureButton.setVisible(false);
+    runTimerButton.setVisible(false);
+    quickSimButton.setVisible(false);
     trustTheMonkeysLabel.setVisible(false);
       remove(monkeyMerchantPanel);
      remove(monkeyPanel);
@@ -269,6 +333,7 @@ private void colorSoldMonkeys(){
      saleCount = 0;
      mercPanel.setLayout(new GridLayout(1 ,10));//mercPanel.setLayout(new GridLayout(1 ,numberOfMerchants));
          experiencedSellers = monkeyTown.merchantsWithSales();
+         merchantButtons = new ArrayList();
     // String bannre = peopleWhoOwnMonkeys.size() + " people own " + numMonkeyz + " monkeys";
      //numberOfMonkeysLabel.setText(bannre);
     for(int i = 0; i < 10 ; i++){
@@ -276,18 +341,25 @@ private void colorSoldMonkeys(){
        
        
        if(i < experiencedSellers.size()){
-           experiencedSellers.get(i).addActionListener(this);
-        saleCount = saleCount + experiencedSellers.get(i).getNumberOfReceipts(); 
-       experiencedSellers.get(i).setText("" + experiencedSellers.get(i).getNumberOfReceipts());//b.setText("" + a.get(i).getPrice());
-       experiencedSellers.get(i).setBackground(randomColor(theme));
-       mercPanel.add(experiencedSellers.get(i));
+           merchantButtons.add(experiencedSellers.get(i));
+           merchantButtons.get(i).addActionListener(this);
+        saleCount = saleCount + merchantButtons.get(i).getNumberOfReceipts(); 
+       merchantButtons.get(i).setText("" + merchantButtons.get(i).getNumberOfReceipts());//b.setText("" + a.get(i).getPrice());
+       merchantButtons.get(i).setBackground(randomColor(theme));
+       
+      
        }else{
            MonkeyMerchant blank = new MonkeyMerchant();
-          blank.setBackground(Color.black);
-          mercPanel.add(blank);
+           merchantButtons.add(blank);
+         merchantButtons.get(i).setBackground(Color.black);
+         merchantButtons.get(i).addActionListener(this);
+        
        }
        
-    }
+        mercPanel.add(merchantButtons.get(i));
+        
+        
+    }  // end for loop
     
    
     
@@ -327,10 +399,15 @@ private void colorSoldMonkeys(){
                     showText.setText(null);
                     showText.setBackground(Color.yellow);
                     titleLabel.setVisible(true);
-                   monkeyPictureButton.setVisible(true);
+                     quickSimButton2.setVisible(true);
+                   quickSimButton.setVisible(true);
+                   runTimerButton.setVisible(true);
                    trustTheMonkeysLabel.setVisible(true);
                    startButton.setVisible(false);
+                   showPeopleButton.setVisible(false);
+                   showTransButton.setVisible(true);
                     makeMonkeyPanels();
+                    scroll.setBounds(758,6,520,220);
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(""); 
                   
@@ -338,56 +415,80 @@ private void colorSoldMonkeys(){
                 }
                 
                 if (obj == showTransButton){
-                    scroll.setBounds(866,6,480,620);
+                    scroll.setBounds(892,6,452,620);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
                     showTransButton.setVisible(false);
                     showPeopleButton.setVisible(true);
+                     quickSimButton2.setVisible(false);
                      printTransactions();
                   
 
                 }
                  if (obj == showPeopleButton){
-                     showText.setText(null);
-                    scroll.setBounds(824,6,520,220);
-                    titleLabel.setVisible(true);
-                    peopleWithMonkeysPanel.setVisible(true);
-                    showPeopleButton.setVisible(false);
-                    showTransButton.setVisible(true);
+                   
+                     showPeople();
                      
-                  
+                     titleLabel.setVisible(true);
+                     quickSimButton2.setVisible(true);
 
                 }
                  
                 
-                if (obj == monkeyPictureButton){
+                if (obj == quickSimButton){
 
-                    showText.setText(null);
-                    startButton.setVisible(true);
+                    showPeople();
+                    showTransButton.setVisible(false);
+                     startButton.setVisible(true);
                     removeMonkeyPanels();
                     String bannre3 = "<html><h2><font color='blue'>" +  "monkey time!"  + "</font><font color='red'>" +  "   monkey monkey!" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(bannre3); 
 
                 }
                 
+                 if (obj == runTimerButton){
+
+                    showPeople();
+                    showTransButton.setVisible(false);
+                     startButton.setVisible(true);
+                    removeMonkeyPanels();
+                    String bannre3 = "<html><h2><font color='blue'>" +  "monkey time!"  + "</font><font color='red'>" +  "   monkey monkey!" + "</font><h1></html>";
+                   numberOfMonkeysLabel.setText(bannre3); 
+
+                }
                 for(int i = 0; i < monkeyButtons.size(); i++){
     
              
                  if (obj ==  monkeyButtons.get(i)){
                      
+                     showPeople();
+                     
                       showText.setBackground(monkeyButtons.get(i).getColor());
+                      if(monkeyButtons.get(i).getBackground().equals(Color.BLACK)){
+                     showText.setBackground(Color.YELLOW);
+                     titleLabel.setVisible(true);
+                     quickSimButton2.setVisible(true);
+                     }
                      printResults(monkeyButtons.get(i).transactionArray());
                     break;  
                     }
        
                 }
                 
-                 for(int i = 0; i < experiencedSellers.size(); i++){
+                 for(int i = 0; i < merchantButtons.size(); i++){
     
              
-                 if (obj ==  experiencedSellers.get(i)){
-                     showText.setBackground(experiencedSellers.get(i).getBackground());
-                     printResults(experiencedSellers.get(i).transactionArray());
+                 if (obj ==  merchantButtons.get(i)){
+                     
+                     showPeople();
+                     
+                     showText.setBackground(merchantButtons.get(i).getBackground());
+                     if(merchantButtons.get(i).getBackground().equals(Color.BLACK)){
+                     showText.setBackground(Color.YELLOW); 
+                     titleLabel.setVisible(true);
+                     quickSimButton2.setVisible(true);
+                     }
+                     printResults(merchantButtons.get(i).transactionArray());
                     break;  
                     }
        
@@ -398,9 +499,21 @@ private void colorSoldMonkeys(){
     
              
                  if (obj ==  peopleButtons.get(i)){
+                     
+                       showPeople();
+                     
                      showText.setBackground(peopleButtons.get(i).getBackground());
+                     if(peopleButtons.get(i).getBackground().equals(Color.BLACK)){
+                     showText.setBackground(Color.YELLOW); 
+                     titleLabel.setVisible(true);
+                     quickSimButton2.setVisible(true);
+                     }
+                     
                      printResults(peopleButtons.get(i).transactionArray());
+                     
                     break;  
+                    
+                    
                     }
        
                 }
@@ -418,6 +531,20 @@ public void printResults(ArrayList<String> s){
      
  }
  
+private void showPeople(){
+    
+                    showText.setText(null);
+                    scroll.setBounds(758,6,520,220);
+                   // titleLabel.setVisible(true);
+                    peopleWithMonkeysPanel.setVisible(true);
+                    showPeopleButton.setVisible(false);
+                    showTransButton.setVisible(true);
+                    quickSimButton2.setVisible(false);
+                    titleLabel.setVisible(false);
+}
+
+
+
 private void matchTextAreaColor(){
     
     

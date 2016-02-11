@@ -95,7 +95,7 @@ public class MonkeyMerchant extends JButton{
          
        ArrayList<String> transactionList = new ArrayList();
    // if there is at least one transaction, generate visible banner
-   if(receipts.size() > 0){
+   if(receipts.size() > 1){
      for(int i = 0; i < 1; i++){
          String temp1 = "//////////////monkey merchant #" + merchantId + " has " + transactionHistory.size() + " transactions....////////////////";
        System.out.println(temp1); 

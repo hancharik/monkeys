@@ -132,11 +132,24 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     sliderOfGrowthRate = new JSlider(JSlider.HORIZONTAL, 0, 100, monkeyPanel.growthRate);
     sliderOfTheme = new JSlider(JSlider.HORIZONTAL, 0, 15, monkeyPanel.theme);
     
+    
+   
+    sliderOfTheme.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+    sliderOfGrowthRate.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+    sliderOfMerchants.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+    sliderOfTownsPeople.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+    sliderOfTransactions.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+    
+    
     sliderOfTheme.addChangeListener(this);
     sliderOfGrowthRate.addChangeListener(this);
     sliderOfMerchants.addChangeListener(this);
     sliderOfTownsPeople.addChangeListener(this);
     sliderOfTransactions.addChangeListener(this);
+    
+    
+    
+    
     labelOfTheme = new JLabel("<html><h2><font color='black'>Theme: </font><font color='red'> " + translateTheme(monkeyPanel.theme) + "</font><h2></html>");
     labelOfGrowthRate = new JLabel("<html><h2><font color='black'>Growth Rate: </font><font color='red'>" + monkeyPanel.growthRate + "</font><h2></html>");
     labelOfMerchants = new JLabel("<html><h2><font color='black'>Merchants: </font><font color='red'>" + monkeyPanel.numberOfMerchants + "</font><h2></html>");
