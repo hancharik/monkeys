@@ -133,5 +133,27 @@ public class Monkey extends JButton{
     
      return paper; 
   }   
-     
+ 
+    public void newHome(TownsFolk o){
+      
+      owner = o;
+      owner.buyMonkey(this);
+      openMarketMonkey = false;
+  }
+  
+  public void freeAgent(){
+      
+      owner.sellMonkey(this);
+      owner = null;
+      openMarketMonkey = true;
+  }
+  
+  public boolean openMarketMonkey(){
+      
+      return openMarketMonkey;
+  } 
+  
+  
+  
+  
 }  // end class

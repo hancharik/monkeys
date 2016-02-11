@@ -107,7 +107,17 @@ public class TownsFolk extends JButton{
     
     
     
-    
+       public void buyMonkey(Monkey m){
+      
+        monkeys.add(m);
+        
+    }
+  
+       public void sellMonkey(Monkey m){
+      
+        monkeys.remove(m);
+        
+    }
     
     
     
