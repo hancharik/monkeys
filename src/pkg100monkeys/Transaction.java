@@ -61,23 +61,29 @@ public class Transaction implements Runnable{
  
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
       
-        String space = "";// String space = "\t";
+        String space = "     ";// String space = "\t";
        String whatDoWeCallPeople = "";
        
        if(market.weRespectYourPrivacy()){
-             whatDoWeCallPeople = " to ssn #" + t.getSSN();
+             whatDoWeCallPeople = "ssn #" + t.getSSN();
          }else{
-           whatDoWeCallPeople = " to villager #" + t.getSSN();
+           whatDoWeCallPeople = "villager #" + t.getSSN();
          }
        
+       String pseudonym = "Samuel Clemens";
+        if(m.thisMonkeyHasAName()){
+          pseudonym = m.getName();
+       }else{
+         pseudonym = "monkey #" + m.getId();  
+       }
        
-                String temp1 = space + "transaction id #" + id + ":  " + m.getName() + "\nsold by merchant #" + mm.getMerchantId() 
+                String temp1 = space + "transaction id #" + id + ":  " + pseudonym + "\nsold by merchant #" + mm.getMerchantId() 
                     + whatDoWeCallPeople + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp2 = space + "transaction id #" + id + ":  " + m.getName() +  "sold by merchant #" + mm.getMerchantId() 
+                String temp2 = space + "transaction id #" + id + ":  " + pseudonym +  "sold by merchant #" + mm.getMerchantId() 
                 + whatDoWeCallPeople + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp3 = space + "trans id #" + id + "  " + m.getName() + " merchant #" + mm.getMerchantId() 
-                + whatDoWeCallPeople + " for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
-                String temp4 = space + "trans id # " + id + "\t" + m.getName() +   "\tmerchant # " + mm.getMerchantId() 
+                String temp3 = space + "trans id #" + id + "  " + pseudonym + " merchant #" + mm.getMerchantId() 
+                + whatDoWeCallPeople + " for $" + m.getPrice() + "( + " + increaseAmount%100 + "%)";
+                String temp4 = space + "trans id # " + id + "\t" + pseudonym +   "\tmerchant # " + mm.getMerchantId() 
                 + "\t" + whatDoWeCallPeople +"\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
         record = temp4;
      

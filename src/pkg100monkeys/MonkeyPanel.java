@@ -26,7 +26,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     MonkeyMarket monkeyTown;
     
     JLabel numberOfMonkeysLabel;
-    JLabel trustTheMonkeysLabel;
+    JLabel resultLabel;
     JLabel titleLabel;
     
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
@@ -166,9 +166,9 @@ private void createUI(){
     ///////////////////////////////////////////////////////
     ///////// this is a group
     
-    trustTheMonkeysLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
-    trustTheMonkeysLabel.setBounds(700,244,420,42);
-    add(trustTheMonkeysLabel);
+    resultLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
+    resultLabel.setBounds(722,244,420,42);
+    add(resultLabel);
     
     quickSimButton = new JButton("new quick sim");
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
@@ -180,7 +180,7 @@ private void createUI(){
 
  
    
-         marketButton = new JButton("market :" + monkeysInTheMarket());
+         marketButton = new JButton(  monkeysInTheMarket() +" market monkeys" );
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
     marketButton.setBounds(718,354,160,40);
     marketButton.setBackground(Color.yellow);
@@ -297,7 +297,7 @@ private void removeMonkeyPanels(){
     runTimerButton.setVisible(true);
     quickSimButton.setVisible(false);
     marketButton.setVisible(false);
-    trustTheMonkeysLabel.setVisible(false);
+    resultLabel.setVisible(false);
     showNamesButton.setVisible(false);
       remove(monkeyMerchantPanel);
      remove(monkeyPanel);
@@ -451,9 +451,9 @@ private void colorMarket(){
       // String bannre6 = "<html><h3><font color='black' >" +  "transaction count is NOT good\n"  + "</font><font color='red'>" + "(returned " + saleCount + ", expected:" + numberOfTransactions +  ")" + "</font><h3></html>";
     numberOfMonkeysLabel.setText(bannre4); 
       if(saleCount==numberOfTransactions){
-        trustTheMonkeysLabel.setText(bannre4);
+        resultLabel.setText(bannre4);
     }else{
-        trustTheMonkeysLabel.setText(bannre4);
+        resultLabel.setText(bannre4);
     }
      titleLabel.setText(bannre4); 
  }
@@ -476,7 +476,7 @@ private void colorMarket(){
                    quickSimButton.setVisible(true);
                    marketButton.setVisible(true);
                    runTimerButton.setVisible(false);
-                   trustTheMonkeysLabel.setVisible(true);
+                   resultLabel.setVisible(true);
                    startButton.setVisible(false);
                    showPeopleButton.setVisible(false);
                    showTransButton.setVisible(true);
@@ -485,8 +485,10 @@ private void colorMarket(){
                     scroll.setBounds(758,6,520,220);
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(""); 
-                  marketButton.setText("market :" + monkeysInTheMarket());
-
+                  marketButton.setText( monkeysInTheMarket() + " market monkeys");
+                    colorSoldMonkeys();
+                    resultLabel.setText("<html><h2><font color='black' >" +  numberOfTransactions + " transactions"  + "</font></h2></html>");
+                    
                 }
                 
                 if (obj == showTransButton){

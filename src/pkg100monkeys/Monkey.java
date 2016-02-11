@@ -25,6 +25,7 @@ public class Monkey extends JButton{
     private ArrayList<Transaction> transactionHistory;
     private Color color;
     private String fullName;
+    private boolean thisMonkeyHasAName = false;
     private int primeMonkeyIndicator; // 100 is 100%, 101 is inflation, 99 is contraction of overall economy
     
     
@@ -135,8 +136,15 @@ public class Monkey extends JButton{
      for(int i = 0; i < 1; i++){
          String temp1 = "//////////////   monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////";
          String temp12 = "//////////////  " + fullName + " has " + transactionHistory.size() + " transactions....////////////////";
-       System.out.println(temp12); 
-       transactionList.add(temp12);
+       
+       if(thisMonkeyHasAName){
+          System.out.println(temp12); 
+          transactionList.add(temp12);
+       }else{
+          System.out.println(temp1); 
+          transactionList.add(temp1);   
+       }
+       
      }
    }          
         
@@ -153,11 +161,25 @@ public class Monkey extends JButton{
        
       
       String temp11;
-      if(owner!=null){
-      temp11 = "" + fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
+      
+      if(thisMonkeyHasAName){
+          if(owner!=null){
+      temp11 = fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
       }else{
-       temp11 = "" + fullName + " is worth $"  + price + ", owned by NO ONE" ; 
+       temp11 = fullName + " is worth $"  + price + ", owned by NO ONE" ; 
       }
+       }else{
+          if(owner!=null){
+      temp11 = "monkey #" + monkeyId + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
+      }else{
+       temp11 = "monkey #" + monkeyId +" is worth $"  + price + ", owned by NO ONE" ; 
+      }   
+       }
+      
+      
+      
+      
+     
       transactionList.add(temp11);
       return transactionList;
        
@@ -179,6 +201,16 @@ public class Monkey extends JButton{
      return paper; 
   }   
  
+    public boolean thisMonkeyHasAName(){
+      
+   
+     return thisMonkeyHasAName; 
+  } 
+  
+  
+  
+  
+  
     public void newHome(TownsFolk o){
       
       owner = o;
