@@ -5,6 +5,7 @@
  */
 package pkg100monkeys;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JButton;
 
@@ -16,23 +17,39 @@ public class Monkey extends JButton{
     
     private int monkeyId;
     private int price;
-    private int rateOfGrowth = 100;
+    private int rateOfGrowth;
     private int levelOfDisease;
     private TownsFolk owner;
     private Boolean openMarketMonkey;
     private int mojo;
     private ArrayList<Transaction> transactionHistory;
+    private Color color;
+    
+    
     
     public Monkey(int number){
        
-        setRateOfGrowth(100);
-        transactionHistory = new ArrayList<Transaction>();
-       monkeyId = number + 1; 
-       // we could set this as a variable, right now we just start at 100 dollars
-       price = 100;
-       
+        monkeyId = number + 1; 
+        makeMonkey();
     
     }  // end constructor
+ 
+    
+    
+    private void makeMonkey(){
+        
+        rateOfGrowth = 100;
+        levelOfDisease = 0;
+        owner = null;
+        openMarketMonkey = true;
+        mojo = 0;
+        transactionHistory = new ArrayList<Transaction>();
+        price = 100;
+  
+        
+    } // end make money
+    
+    
     
     
  public int increasePrice(int rg){
@@ -153,7 +170,13 @@ public class Monkey extends JButton{
       return openMarketMonkey;
   } 
   
-  
-  
+  public void setColor(Color c){
+      
+      color = c;
+  }
+  public Color getColor(){
+      
+      return color;
+  } 
   
 }  // end class

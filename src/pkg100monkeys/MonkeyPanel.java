@@ -45,6 +45,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     int numberOfMerchants = 10;
     int numberOfTownsPeople = 100;
     int numberOfTransactions = 1;
+    int theme = 10;
     int growthRate = 100;
     int saleCount = 0;
     int numMonkeyz = 0;
@@ -57,7 +58,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
         
         super();
         
-        
+        setBackground(randomColor(theme));
         //monkeyTown = new MonkeyMarket(); // moved to the make monkey panels method
         
         
@@ -83,8 +84,8 @@ private void createUI(){
     
     
     monkeyPictureButton = new JButton("new");
-    //monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
-    monkeyPictureButton.setBounds(728,324,80,40);
+    monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
+    monkeyPictureButton.setBounds(728,364,120,120);
     monkeyPictureButton.addActionListener(this);
     add(monkeyPictureButton);
     
@@ -105,7 +106,7 @@ private void createUI(){
     numberOfMonkeysLabel.setBounds(920,84,420,42);
     add(numberOfMonkeysLabel);
     trustTheMonkeysLabel = new JLabel("trustTheMonkeysLabel");
-    trustTheMonkeysLabel.setBounds(920,144,420,42);
+    trustTheMonkeysLabel.setBounds(710,304,420,42);
     add(trustTheMonkeysLabel);
     titleLabel = new JLabel("100 monkeys");
     titleLabel.setBounds(960,14,180,40);
@@ -123,6 +124,10 @@ private void createUI(){
     
 }   // end create UI 
  
+
+
+
+
 
 private void makeMonkeyPanels(){
     
@@ -145,8 +150,21 @@ private void makeMonkeyPanels(){
      add(monkeyPanel);
      add(peopleWithMonkeysPanel);
      add(monkeyMerchantPanel);
+     
+     
+     
     repaint();
+    
+    
+    
 }// end make monkey panels
+
+
+
+
+
+
+
 
 private void removeMonkeyPanels(){
     monkeyPictureButton.setVisible(false);
@@ -165,7 +183,8 @@ private JPanel monkeyPanel(){
         monkeyButtons.get(i).setRateOfGrowth(growthRate);
        monkeyButtons.get(i).addActionListener(this);
         monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getPrice());
-        monkeyButtons.get(i).setBackground(randomColor());
+         monkeyButtons.get(i).setColor(randomColor(theme));
+        monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());
        monkPan.add( monkeyButtons.get(i));
     }
    return monkPan;
@@ -186,7 +205,7 @@ private JPanel monkeyPanel(){
            peopleWhoOwnMonkeys.get(i).addActionListener(this);
            numMonkeyz =  numMonkeyz + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys();
        peopleWhoOwnMonkeys.get(i).setText("" + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys());//b.setText("" + a.get(i).getPrice());
-       peopleWhoOwnMonkeys.get(i).setBackground(randomColor());
+       peopleWhoOwnMonkeys.get(i).setBackground(randomColor(theme));
        peepsWithMonkPan.add(peopleWhoOwnMonkeys.get(i));
        }else{
            TownsFolk blank = new TownsFolk();
@@ -214,7 +233,7 @@ private JPanel monkeyPanel(){
            experiencedSellers.get(i).addActionListener(this);
         saleCount = saleCount + experiencedSellers.get(i).getNumberOfReceipts(); 
        experiencedSellers.get(i).setText("" + experiencedSellers.get(i).getNumberOfReceipts());//b.setText("" + a.get(i).getPrice());
-       experiencedSellers.get(i).setBackground(randomColor());
+       experiencedSellers.get(i).setBackground(randomColor(theme));
        mercPanel.add(experiencedSellers.get(i));
        }else{
            MonkeyMerchant blank = new MonkeyMerchant();
@@ -241,9 +260,9 @@ private JPanel monkeyPanel(){
        String bannre6 = "<html><h3><font color='black' >" +  "transaction count is NOT good\n"  + "</font><font color='red'>" + "(returned " + saleCount + ", expected:" + numberOfTransactions +  ")" + "</font><h3></html>";
      numberOfMonkeysLabel.setText(bannre2); 
       if(saleCount==numberOfTransactions){
-        trustTheMonkeysLabel.setText(bannre5);
+        trustTheMonkeysLabel.setText(bannre4);
     }else{
-        trustTheMonkeysLabel.setText(bannre6);
+        trustTheMonkeysLabel.setText(bannre4);
     }
      titleLabel.setText(bannre4); 
  }
@@ -258,12 +277,15 @@ private JPanel monkeyPanel(){
         
                 if (obj == startButton){
 
+                    setBackground(randomColor(theme));
                     showText.setText(null);
+                    showText.setBackground(Color.yellow);
+                    titleLabel.setVisible(true);
                    monkeyPictureButton.setVisible(true);
                    startButton.setVisible(false);
                     makeMonkeyPanels();
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
-                   numberOfMonkeysLabel.setText(bannre3); 
+                   numberOfMonkeysLabel.setText(""); 
                   
 
                 }
@@ -284,7 +306,7 @@ private JPanel monkeyPanel(){
              
                  if (obj ==  monkeyButtons.get(i)){
                      
-                      showText.setBackground(monkeyButtons.get(i).getBackground());
+                      showText.setBackground(monkeyButtons.get(i).getColor());
                      printResults(monkeyButtons.get(i).transactionArray());
                     break;  
                     }
@@ -334,13 +356,63 @@ private void matchTextAreaColor(){
     
 }
 
-private Color randomColor(){
+public Color randomColor(int themeChoice){
 
-
+                        int same;
+    
                         int R = (int) (Math.random( )*256);
                         int G = (int)(Math.random( )*256);
                         int B= (int)(Math.random( )*256);
+                                
                         Color randomColor = new Color(R, G, B);
+    
+    
+    switch(themeChoice){
+        // original monkey yellows, browns, and greens
+                        case 1: R = (int) (Math.random( )*156)+100;
+                                G = (int)(Math.random( )*56)+200;
+                                B= (int)(Math.random( )*56);break; 
+                        case 2: B = (int) (Math.random( )*156)+100;
+                                R = (int)(Math.random( )*56)+200;
+                                G= (int)(Math.random( )*56); break; 
+                        case 3: R = (int) (Math.random( )*156)+100;
+                                B = (int)(Math.random( )*56)+200;
+                                G= (int)(Math.random( )*56); break; 
+                        case 4: G = (int) (Math.random( )*156)+100;
+                                B = (int)(Math.random( )*56)+200;
+                                R= (int)(Math.random( )*56); break; 
+                        case 5: G = (int) (Math.random( )*56)+200;
+                                R = (int)(Math.random( )*56)+200;
+                                B= (int)(Math.random( )*56)+200;break;
+                        case 6: R = (int) (Math.random( )*156)+100;
+                                G = (int)(Math.random( )*156)+100;
+                                B= (int)(Math.random( )*156)+100; break;
+                       // grayscale if you set them all to same value...
+                        case 7: same = (int) (Math.random( )*256);
+                                R = same; 
+                                G = same;
+                                B= same; break;
+                      // reduce the range for subtle greyscale...
+                        case 8: same = (int) (Math.random( )*156) + 50;
+                                R = same; 
+                                G = same;
+                                B= same; break;
+                          // this is nice...
+                        case 9: same = (int) (Math.random( )*96) + 80;
+                                R = same; 
+                                G = same;
+                                B= same; break;
+                                   // really pull back...
+                        case 10: same = (int) (Math.random( )*66) + 180;
+                                R = same; 
+                                G = same;
+                                B= same; break;
+                        default:R = (int) (Math.random( )*256);
+                                G = (int)(Math.random( )*256);
+                                B= (int)(Math.random( )*256); break;
+                        
+    }
+                     randomColor = new Color(R, G, B);  
 
                 return randomColor;
 

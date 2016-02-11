@@ -6,6 +6,7 @@
 package pkg100monkeys;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,20 +25,30 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     JSlider sliderOfTownsPeople;
     JSlider sliderOfTransactions;
     JSlider sliderOfGrowthRate;
+    JSlider sliderOfTheme;
     
+    JLabel labelOfTheme;
     JLabel labelOfMerchants;
     JLabel labelOfGrowthRate;
     JLabel labelOfTownsPeople;
     JLabel labelOfTransactions;
+    JPanel themeDemonstrator;
     
+    ArrayList<JButton> themeDemoButtons;
+    ArrayList<JSlider> sliders;
     
     MonkeyPanel monkeyPanel;
     
     public SliderPanel(MonkeyPanel mp){
         
         super();
+       
         monkeyPanel = mp;
-        setLayout(new GridLayout(8, 1));
+        
+        setLayout(new GridLayout(11, 1));
+        setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+         
+         
         createPanel();
         
     }
@@ -72,29 +83,72 @@ public class SliderPanel  extends JPanel implements ChangeListener{
             labelOfGrowthRate.setText("<html><h2><font color='black'>Growth Rate of price: </font><font color='red'>" + monkeyPanel.growthRate + "</font><h2></html>");
             monkeyPanel.startButton.setVisible(true);
         }
+        if (source == sliderOfTheme) {
+            monkeyPanel.theme = source.getValue();
+            labelOfTheme.setText("<html><h2><font color='black'>Theme: </font><font color='black'> " + translateTheme(monkeyPanel.theme) + "</font><h2></html>");
+            colorButtons();
+            setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+            monkeyPanel.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+            monkeyPanel.startButton.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
+            monkeyPanel.startButton.setVisible(true);
+        }
     }
 
         
-        
+   private String translateTheme(int t){
+       String temporarilyThis = "pure random colors";
+       switch(t){
+           case 1: temporarilyThis = "default 100 monkeys theme"; break;
+           case 2: temporarilyThis = ""; break;
+           case 3: temporarilyThis = ""; break;
+           case 4: temporarilyThis = ""; break;
+           case 5: temporarilyThis = ""; break;
+           case 6: temporarilyThis = ""; break;
+           case 7: temporarilyThis = "extreme grayscale"; break;
+           case 8: temporarilyThis = "grayscale #2"; break;
+           case 9: temporarilyThis = "grayscale #3"; break;
+           case 10: temporarilyThis = "best grayscale"; break;
+       }
+       return temporarilyThis;
+   }     
         
         
     private void createPanel() {
+     
+    themeDemoButtons = new ArrayList();
+    sliders = new ArrayList();
+    themeDemonstrator = createThemeDemoButtons();
+        
         
     sliderOfMerchants = new JSlider(JSlider.HORIZONTAL, 1, 10, monkeyPanel.numberOfMerchants);
     sliderOfTownsPeople = new JSlider(JSlider.HORIZONTAL, 1, 100, monkeyPanel.numberOfTownsPeople);
     sliderOfTransactions = new JSlider(JSlider.HORIZONTAL, 1, 1000, monkeyPanel.numberOfTransactions);
     sliderOfGrowthRate = new JSlider(JSlider.HORIZONTAL, 0, 100, monkeyPanel.growthRate);
+    sliderOfTheme = new JSlider(JSlider.HORIZONTAL, 0, 10, monkeyPanel.theme);
     
+    sliderOfTheme.addChangeListener(this);
     sliderOfGrowthRate.addChangeListener(this);
     sliderOfMerchants.addChangeListener(this);
     sliderOfTownsPeople.addChangeListener(this);
     sliderOfTransactions.addChangeListener(this);
+    labelOfTheme = new JLabel("<html><h2><font color='black'>Theme: </font><font color='red'> " + translateTheme(monkeyPanel.theme) + "</font><h2></html>");
     labelOfGrowthRate = new JLabel("<html><h2><font color='black'>Growth Rate: </font><font color='red'>" + monkeyPanel.growthRate + "</font><h2></html>");
     labelOfMerchants = new JLabel("<html><h2><font color='black'>Merchants: </font><font color='red'>" + monkeyPanel.numberOfMerchants + "</font><h2></html>");
     labelOfTownsPeople = new JLabel("<html><h2><font color='black'>Townspeople: </font><font color='red'>" + monkeyPanel.numberOfTownsPeople + "</font><h2></html>");
     labelOfTransactions = new JLabel("<html><h2><font color='black'>Transactions: </font><font color='red'>" + monkeyPanel.numberOfTransactions + "</font><h2></html>");
         
-      
+    
+    sliders.add(sliderOfTheme);
+    sliders.add(sliderOfTransactions);
+    sliders.add(sliderOfTownsPeople);
+    sliders.add(sliderOfMerchants);
+    sliders.add(sliderOfGrowthRate);
+    
+    
+    
+      add(themeDemonstrator);
+      add(labelOfTheme);
+      add(sliderOfTheme);
       add(labelOfGrowthRate);
       add(sliderOfGrowthRate);
       add(labelOfMerchants);
@@ -109,9 +163,31 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     } // end create panel
  
     
+    private JPanel createThemeDemoButtons(){
+        
+        JPanel yoyo = new JPanel();
+        yoyo.setLayout(new GridLayout(1, 10));
+        for(int yy = 0; yy < 10; yy++){
+            JButton jb = new JButton();
+            themeDemoButtons.add(jb);
+            yoyo.add(themeDemoButtons.get(yy));
+        }
+        colorButtons();
+        return yoyo;
+    }
+    
+public void colorButtons(){
+    
+    for(int y = 0; y < themeDemoButtons.size(); y++){
+            themeDemoButtons.get(y).setBackground(monkeyPanel.randomColor(monkeyPanel.theme)); 
+        }
+   
+    for(int y = 0; y < sliders.size(); y++){
+            sliders.get(y).setBackground(monkeyPanel.randomColor(monkeyPanel.theme)); 
+        }
     
     
-    
+}    
     
     
 }  // end class
