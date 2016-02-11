@@ -18,9 +18,11 @@ public class MonkeyMerchant extends JButton{
     private ArrayList<String> receipts;
     private ArrayList<Transaction> transactionHistory;
     private int merchantId;
+    private MonkeyMarket monkeyMarket;
     
-    public MonkeyMerchant(int id){
+    public MonkeyMerchant(int id, MonkeyMarket mm){
     
+        monkeyMarket = mm;
         transactionHistory = new ArrayList();
         receipts = new ArrayList();
         String addTitle = " receipt log of Merchant #" + (id+1);
@@ -70,6 +72,11 @@ public class MonkeyMerchant extends JButton{
       
   } 
    
+   public MonkeyMarket getMarket(){
+      
+      return monkeyMarket;
+      
+  } 
   public int getNumberOfReceipts(){
       
       int number = receipts.size() - 1; //you have to subtract one, as the first element is the header. we should change that

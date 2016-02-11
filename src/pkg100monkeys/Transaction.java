@@ -19,7 +19,7 @@ public class Transaction {
     private int increaseAmount;
     
     public Transaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
-     increaseAmount =  m.increasePrice(); 
+     increaseAmount =  m.increasePrice(mm.getMarket().getGrowthRate()); 
     monkey = m;
     monkeyMerchant = mm;
     townsFolk = t;

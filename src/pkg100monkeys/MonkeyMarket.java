@@ -17,7 +17,7 @@ public class MonkeyMarket {
     private int numberOfMerchants = 10;
     private int numberOfTownsPeople = 100;
     private int numberOfTransactions = 100;
-    
+    private int growthRate = 100;
     
     
     
@@ -38,11 +38,12 @@ public class MonkeyMarket {
         generateSalesLogs();
     } // end constructor
    
-    public MonkeyMarket(int numberOfMerchants, int numberOfTownsPeople, int numberOfTransactions){
+    public MonkeyMarket(int numberOfMerchants, int numberOfTownsPeople, int numberOfTransactions, int growthRate){
     
         this.numberOfMerchants = numberOfMerchants;
         this.numberOfTownsPeople = numberOfTownsPeople;
-        this.numberOfTransactions = numberOfTransactions;  
+        this.numberOfTransactions = numberOfTransactions;
+        this.growthRate = growthRate;
        
         makeMarket();
         generateMonkeyEconomy(numberOfTransactions);
@@ -64,7 +65,7 @@ public class MonkeyMarket {
      
       monkeyMerchants = new ArrayList<MonkeyMerchant>();
       for(int s = 0; s < numberOfMerchants; s++){
-       MonkeyMerchant mm = new MonkeyMerchant(s); 
+       MonkeyMerchant mm = new MonkeyMerchant(s, this); 
        monkeyMerchants.add(mm);
        System.out.println("monkey merchant #" + mm.getMerchantId() + " created, vendor size :" + monkeyMerchants.size());
       }
@@ -164,5 +165,14 @@ public class MonkeyMarket {
        
       return mercsWithSales;
   }   // end people who own monkeys
-     
+
+      
+      public int getGrowthRate(){
+          
+          
+          return growthRate;
+      }  // end get growth rate
+      
+      
+      
 }  // end class

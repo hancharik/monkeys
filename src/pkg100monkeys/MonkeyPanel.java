@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -41,9 +42,10 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JPanel monkeyMerchantPanel;
     JPanel peopleWithMonkeysPanel;
     
-    int numberOfMerchants = 4;
+    int numberOfMerchants = 10;
     int numberOfTownsPeople = 100;
-    int numberOfTransactions = 100;
+    int numberOfTransactions = 1;
+    int growthRate = 100;
     int saleCount = 0;
     int numMonkeyz = 0;
     
@@ -112,7 +114,10 @@ private void createUI(){
    showText = new JTextArea();
     showText.setBounds(800,10,520,220);
     showText.setBackground(Color.yellow);
-    add(showText);
+    JScrollPane scroll = new JScrollPane (showText, 
+   JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    scroll.setBounds(800,10,520,220);
+    add(scroll);
     
     
     
@@ -125,7 +130,7 @@ private void makeMonkeyPanels(){
     sliderPanel.setVisible(false);
     
     
-    monkeyTown = new MonkeyMarket(numberOfMerchants, numberOfTownsPeople, numberOfTransactions);  // this generates the data in the game
+    monkeyTown = new MonkeyMarket(numberOfMerchants, numberOfTownsPeople, numberOfTransactions, growthRate);  // this generates the data in the game
     
     monkeyPanel = monkeyPanel();
     monkeyPanel.setBounds(0,0,680,580);
@@ -157,8 +162,10 @@ private JPanel monkeyPanel(){
       monkPan.setLayout(new GridLayout(10 ,10));
     monkeyButtons = monkeyTown.monkeys();
     for(int i = 0; i < monkeyButtons.size(); i++){
+        monkeyButtons.get(i).setRateOfGrowth(growthRate);
        monkeyButtons.get(i).addActionListener(this);
         monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getPrice());
+        monkeyButtons.get(i).setBackground(randomColor());
        monkPan.add( monkeyButtons.get(i));
     }
    return monkPan;
@@ -179,6 +186,7 @@ private JPanel monkeyPanel(){
            peopleWhoOwnMonkeys.get(i).addActionListener(this);
            numMonkeyz =  numMonkeyz + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys();
        peopleWhoOwnMonkeys.get(i).setText("" + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys());//b.setText("" + a.get(i).getPrice());
+       peopleWhoOwnMonkeys.get(i).setBackground(randomColor());
        peepsWithMonkPan.add(peopleWhoOwnMonkeys.get(i));
        }else{
            TownsFolk blank = new TownsFolk();
@@ -206,6 +214,7 @@ private JPanel monkeyPanel(){
            experiencedSellers.get(i).addActionListener(this);
         saleCount = saleCount + experiencedSellers.get(i).getNumberOfReceipts(); 
        experiencedSellers.get(i).setText("" + experiencedSellers.get(i).getNumberOfReceipts());//b.setText("" + a.get(i).getPrice());
+       experiencedSellers.get(i).setBackground(randomColor());
        mercPanel.add(experiencedSellers.get(i));
        }else{
            MonkeyMerchant blank = new MonkeyMerchant();
@@ -255,6 +264,7 @@ private JPanel monkeyPanel(){
                     makeMonkeyPanels();
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(bannre3); 
+                  
 
                 }
                 
@@ -274,6 +284,7 @@ private JPanel monkeyPanel(){
              
                  if (obj ==  monkeyButtons.get(i)){
                      
+                      showText.setBackground(monkeyButtons.get(i).getBackground());
                      printResults(monkeyButtons.get(i).transactionArray());
                     break;  
                     }
@@ -284,7 +295,7 @@ private JPanel monkeyPanel(){
     
              
                  if (obj ==  experiencedSellers.get(i)){
-                     
+                     showText.setBackground(experiencedSellers.get(i).getBackground());
                      printResults(experiencedSellers.get(i).transactionArray());
                     break;  
                     }
@@ -296,7 +307,7 @@ private JPanel monkeyPanel(){
     
              
                  if (obj ==  peopleWhoOwnMonkeys.get(i)){
-                     
+                     showText.setBackground(peopleWhoOwnMonkeys.get(i).getBackground());
                      printResults(peopleWhoOwnMonkeys.get(i).transactionArray());
                     break;  
                     }
@@ -316,4 +327,27 @@ public void printResults(ArrayList<String> s){
      
  }
  
+private void matchTextAreaColor(){
+    
+    
+    
+    
+}
+
+private Color randomColor(){
+
+
+                        int R = (int) (Math.random( )*256);
+                        int G = (int)(Math.random( )*256);
+                        int B= (int)(Math.random( )*256);
+                        Color randomColor = new Color(R, G, B);
+
+                return randomColor;
+
+} // end random color
+
+
+
+
+
 }// end class

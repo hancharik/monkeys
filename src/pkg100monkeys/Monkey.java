@@ -31,21 +31,22 @@ public class Monkey extends JButton{
     }  // end constructor
     
     
- public int increasePrice(){
-     
+ public int increasePrice(int rg){
+     setRateOfGrowth(rg);
      int increase = (int)(Math.random()*rateOfGrowth) + 100;
      int newprice = (price * increase)/100;
      
      System.out.print("monkey #" + monkeyId + " was $" + price );
      
      price = newprice;
+     
      System.out.println( ", new price is $" + price);
      return increase;
  } 
  
  public void setRateOfGrowth(int r){
-     int rateCap = 1000;
-     if(rateOfGrowth > 0 && rateOfGrowth < rateCap){
+     int rateCap = 100;
+     if(r > -1 && r < rateCap){  // -1 to allow for zero growth
      rateOfGrowth = r;
      System.out.println("rate of growth is " + rateOfGrowth);
      }
