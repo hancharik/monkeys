@@ -12,7 +12,7 @@ import javax.swing.JButton;
  *
  * @author mah537
  */
-public class MonkeyMerchant extends JButton{
+public class MonkeyMerchant extends JButton implements Runnable{
    // public class MonkeyMerchant extends Thread{
     
     private ArrayList<String> receipts;
@@ -145,6 +145,17 @@ public void reportTransactionsToTheKing(){
     
     
 }  // end report transactions
+
+    @Override
+    public void run() {
+        
+        
+        
+        
+        
+        
+        
+    }
 
   
 } // end class

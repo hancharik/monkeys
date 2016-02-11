@@ -43,6 +43,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JButton showTransButton;
     JButton showPeopleButton;
     JButton showNamesButton;
+    JButton marketButton;
     
     SliderPanel sliderPanel;
     
@@ -178,6 +179,14 @@ private void createUI(){
     add(quickSimButton);
 
  
+   
+         marketButton = new JButton("market :" + monkeysInTheMarket());
+    //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
+    marketButton.setBounds(718,354,160,40);
+    marketButton.setBackground(Color.yellow);
+   //quickSimButton.setBackground(randomColor(theme));
+    marketButton.addActionListener(this);
+    add(marketButton);
     ///////// this is a group
        ///////////////////////////////////////////////////////
  ///////////////////////////////////////////////////////
@@ -223,7 +232,14 @@ private void createUI(){
 }   // end create UI 
  
 
-
+private int monkeysInTheMarket(){
+    
+    
+     ArrayList temp = monkeyTown.peopleWhoOwnMonkeys();
+     int tempInt = temp.size();
+    int result = 100 - tempInt;
+    return result;
+}
 
 
 
@@ -280,6 +296,7 @@ private void makeMonkeyPanels(){
 private void removeMonkeyPanels(){
     runTimerButton.setVisible(true);
     quickSimButton.setVisible(false);
+    marketButton.setVisible(false);
     trustTheMonkeysLabel.setVisible(false);
     showNamesButton.setVisible(false);
       remove(monkeyMerchantPanel);
@@ -308,12 +325,38 @@ private JPanel monkeyPanel(){
 private void colorSoldMonkeys(){
    for(int i = 0; i < monkeyButtons.size(); i++){
         if(monkeyButtons.get(i).openMarketMonkey()){
-         monkeyButtons.get(i).setColor(Color.BLACK);
+         monkeyButtons.get(i).setColor(Color.YELLOW);
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());   
         }
     } 
     
 }
+
+private void colorMarket(){
+    
+    
+    // i was going to have people.get(0) be the market, but that's wrong...
+    // so i'm going to make a market button, it can display market information
+    
+                marketButton.setBackground(Color.YELLOW);
+    
+    //this is a very inefficient way, left it here for testing purposes 
+  // for(int i = 0; i < monkeyButtons.size(); i++){
+  //        peopleButtons.get(i).setBackground(Color.YELLOW);
+         //this is a better way, 
+            //if(peopleWhoOwnMonkeys.size() > 0){
+            //    peopleButtons.get(0).setBackground(Color.YELLOW);
+
+          //  }
+    //} 
+    
+}
+
+
+
+
+
+
 
  private JPanel peopleWithMonkeysPanel(){
      JPanel peepsWithMonkPan = new JPanel();
@@ -431,6 +474,7 @@ private void colorSoldMonkeys(){
                     titleLabel.setVisible(true);
                      quickSimButton2.setVisible(true);
                    quickSimButton.setVisible(true);
+                   marketButton.setVisible(true);
                    runTimerButton.setVisible(false);
                    trustTheMonkeysLabel.setVisible(true);
                    startButton.setVisible(false);
@@ -441,7 +485,7 @@ private void colorSoldMonkeys(){
                     scroll.setBounds(758,6,520,220);
                     String bannre3 = "<html><h2><font color='blue'>" +  "start time!"  + "</font><font color='red'>" +  "  start game event" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(""); 
-                  
+                  marketButton.setText("market :" + monkeysInTheMarket());
 
                 }
                 
@@ -484,8 +528,15 @@ private void colorSoldMonkeys(){
                     removeMonkeyPanels();
                     String bannre3 = "<html><h2><font color='blue'>" +  "monkey time!"  + "</font><font color='red'>" +  "   monkey monkey!" + "</font><h1></html>";
                    numberOfMonkeysLabel.setText(bannre3); 
+                    marketButton.setText("market :" + monkeysInTheMarket());
+                }
+                
+                if (obj == marketButton){
+
+                    
 
                 }
+                
                 
                  if (obj == runTimerButton){
 

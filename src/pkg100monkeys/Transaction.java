@@ -9,7 +9,7 @@ package pkg100monkeys;
  *
  * @author mark
  */
-public class Transaction {
+public class Transaction implements Runnable{
     
     public Monkey monkey;
     private MonkeyMerchant monkeyMerchant;
@@ -85,6 +85,11 @@ public class Transaction {
     public String printTransactionRecord(){
         
         return record;
+    }
+
+    @Override
+    public void run() {
+       
     }
 
 } // end class
