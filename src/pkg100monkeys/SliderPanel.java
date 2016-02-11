@@ -85,7 +85,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         }
         if (source == sliderOfTheme) {
             monkeyPanel.theme = source.getValue();
-            labelOfTheme.setText("<html><h2><font color='black'>Theme: </font><font color='black'> " + translateTheme(monkeyPanel.theme) + "</font><h2></html>");
+            labelOfTheme.setText("<html><h2><font color='black'>   Theme: </font><font color='black'>       " + translateTheme(monkeyPanel.theme) + "</font><h2></html>");
             colorButtons();
             setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
             monkeyPanel.setBackground(monkeyPanel.randomColor(monkeyPanel.theme));
@@ -98,17 +98,23 @@ public class SliderPanel  extends JPanel implements ChangeListener{
    private String translateTheme(int t){
        String temporarilyThis = "pure random colors";
        switch(t){
-           case 1: temporarilyThis = "default 100 monkeys theme"; break;
-           case 2: temporarilyThis = ""; break;
-           case 3: temporarilyThis = ""; break;
-           case 4: temporarilyThis = ""; break;
-           case 5: temporarilyThis = ""; break;
-           case 6: temporarilyThis = ""; break;
-           case 7: temporarilyThis = "extreme grayscale"; break;
-           case 8: temporarilyThis = "grayscale #2"; break;
-           case 9: temporarilyThis = "grayscale #3"; break;
-           case 10: temporarilyThis = "best grayscale"; break;
+           case 1: temporarilyThis = "100 monkeys"; break;
+           case 2: temporarilyThis = "hot pink"; break;
+           case 3: temporarilyThis = "purples and blues"; break;
+           case 4: temporarilyThis = "cool blue"; break;
+           case 5: temporarilyThis = "soft earth"; break;
+           case 6: temporarilyThis = "smart fella"; break;
+           case 7: temporarilyThis = "THEME 88"; break;
+           case 8: temporarilyThis = "electric avenue"; break;
+           case 9: temporarilyThis = "dark ages"; break;
+           case 10: temporarilyThis = "easy gray"; break;
+           case 11: temporarilyThis = "BLUES AGAIN"; break;
+           case 12: temporarilyThis = "MOSTLY PURPLES"; break;
+           case 13: temporarilyThis = "TRY NUMBER ONE"; break;
+           case 14: temporarilyThis = "Carlos moves like the wind on fire"; break;
        }
+       //String gapSpacer = "\t" + temporarilyThis;
+       
        return temporarilyThis;
    }     
         
@@ -124,7 +130,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
     sliderOfTownsPeople = new JSlider(JSlider.HORIZONTAL, 1, 100, monkeyPanel.numberOfTownsPeople);
     sliderOfTransactions = new JSlider(JSlider.HORIZONTAL, 1, 1000, monkeyPanel.numberOfTransactions);
     sliderOfGrowthRate = new JSlider(JSlider.HORIZONTAL, 0, 100, monkeyPanel.growthRate);
-    sliderOfTheme = new JSlider(JSlider.HORIZONTAL, 0, 10, monkeyPanel.theme);
+    sliderOfTheme = new JSlider(JSlider.HORIZONTAL, 0, 15, monkeyPanel.theme);
     
     sliderOfTheme.addChangeListener(this);
     sliderOfGrowthRate.addChangeListener(this);

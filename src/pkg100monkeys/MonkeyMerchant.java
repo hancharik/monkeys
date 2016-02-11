@@ -41,7 +41,12 @@ public class MonkeyMerchant extends JButton{
     } // end constructor
     
   public synchronized void sellMonkey(Monkey m, TownsFolk tf, int trans){
+      if(m.openMarketMonkey()){
      receipts.add("transaction #" + trans + ":  merchant #" + merchantId + " selling monkey #" + m.getId() + " to townsfolk (ssn #" + tf.getSSN() + ") for $" + m.getPrice());
+      }else{
+        
+     receipts.add("transaction #" + trans + ":  merchant #" + merchantId + " selling ssn #" + m.thisMonkeysOwner().getSSN() + "'s monkey #" + m.getId() + " to townsfolk (ssn #" + tf.getSSN() + ") for $" + m.getPrice());
+      }
   } 
     
    public synchronized void acceptMonkeyReturn(Monkey m, TownsFolk tf, int trans){
@@ -111,7 +116,16 @@ public class MonkeyMerchant extends JButton{
    }  // end transaction array
 
 
-
+public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee){
+    
+    seller.sellMonkey(monkee);
+    buyer.buyMonkey(monkee);
+    
+    // take percentage of sale here....
+    
+    
+    
+}// end person to person transaction
 
 
    public void recordTransaction(Transaction t){
@@ -120,7 +134,17 @@ public class MonkeyMerchant extends JButton{
        
    }
 
-
+public void reportTransactionsToTheKing(){
+    
+    
+    for(int i = 0; i <  transactionHistory.size(); i++){
+         
+           monkeyMarket.reportTransToTheKing(transactionHistory.get(i));
+     }
+    
+    
+    
+}  // end report transactions
 
   
 } // end class

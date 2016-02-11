@@ -32,9 +32,11 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
     ArrayList<MonkeyMerchant> experiencedSellers;
     ArrayList<Monkey> monkeyButtons;
+    ArrayList<Transaction> transactions;
     
     JButton monkeyPictureButton;
     JButton startButton;
+    JButton showTransButton;
     
     SliderPanel sliderPanel;
     
@@ -74,14 +76,18 @@ private void createUI(){
     setLayout(null);
     monkeyButtons = new ArrayList();
     peopleWhoOwnMonkeys = new ArrayList();
-    
+    transactions = new ArrayList();
     
     sliderPanel = new SliderPanel(this);
     sliderPanel.setBounds(828,300,420,360);
     //sliderPanel.setVisible(false);
     add(sliderPanel);
     
-    
+    showTransButton = new JButton("show transactions");
+    showTransButton.setBounds(708,244,160,40);
+    //showTransButton.setVisible(false);
+    showTransButton.addActionListener(this);
+    add(showTransButton);
     
     monkeyPictureButton = new JButton("new");
     monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
@@ -195,8 +201,8 @@ private JPanel monkeyPanel(){
 
 private void colorSoldMonkeys(){
    for(int i = 0; i < monkeyButtons.size(); i++){
-        if(!monkeyButtons.get(i).openMarketMonkey()){
-         monkeyButtons.get(i).setColor(Color.RED);
+        if(monkeyButtons.get(i).openMarketMonkey()){
+         monkeyButtons.get(i).setColor(Color.GRAY);
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());   
         }
     } 
@@ -302,6 +308,13 @@ private void colorSoldMonkeys(){
 
                 }
                 
+                if (obj == showTransButton){
+
+                    showTransButton.setBackground(Color.yellow);
+                     printTransactions();
+                  
+
+                }
                 
                 if (obj == monkeyPictureButton){
 
@@ -396,29 +409,38 @@ public Color randomColor(int themeChoice){
                         case 5: G = (int) (Math.random( )*56)+200;
                                 R = (int)(Math.random( )*56)+200;
                                 B= (int)(Math.random( )*56)+200;break;
-                        case 6: R = (int) (Math.random( )*156)+100;
-                                G = (int)(Math.random( )*156)+100;
-                                B= (int)(Math.random( )*156)+100; break;
+                        case 6: R = (int) (Math.random( )*56)+100;
+                                G = (int)(Math.random( )*56)+100;
+                                B= (int)(Math.random( )*56)+100; break;
                        // grayscale if you set them all to same value...
-                        case 7: same = (int) (Math.random( )*256);
-                                R = same; 
-                                G = same;
-                                B= same; break;
+                        case 7: R = (int) (Math.random( )*88)+88;
+                                G = (int)(Math.random( )*88)+88;
+                                B= (int)(Math.random( )*88)+88; break;
                       // reduce the range for subtle greyscale...
-                        case 8: same = (int) (Math.random( )*156) + 50;
-                                R = same; 
-                                G = same;
-                                B= same; break;
+                        case 8: R = (int) (Math.random( )*60)+160;
+                                G = (int)(Math.random( )*60)+160;
+                                B= (int)(Math.random( )*60)+160; break;
                           // this is nice...
-                        case 9: same = (int) (Math.random( )*96) + 80;
-                                R = same; 
-                                G = same;
-                                B= same; break;
+                        case 9: R = (int) (Math.random( )*56)+100;
+                                G = (int)(Math.random( )*56)+100;
+                                B= (int)(Math.random( )*56)+100; break; 
                                    // really pull back...
                         case 10: same = (int) (Math.random( )*66) + 180;
                                 R = same; 
                                 G = same;
                                 B= same; break;
+                                case 11: G = (int) (Math.random( )*156)+100;
+                                B = (int)(Math.random( )*56)+200;
+                                R= (int)(Math.random( )*56); break;
+                                case 12: R = (int) (Math.random( )*156)+100;
+                                B = (int)(Math.random( )*56)+200;
+                                G= (int)(Math.random( )*56); break;
+                                case 13: R = (int) (Math.random( )*20)+160;
+                                G = (int)(Math.random( )*20)+160;
+                                B= (int)(Math.random( )*20)+160; break;
+                                case 14: R = (int) (Math.random( )*120)+60;
+                                G = (int)(Math.random( )*20)+160;
+                                B= (int)(Math.random( )*90)+150; break;
                         default:R = (int) (Math.random( )*256);
                                 G = (int)(Math.random( )*256);
                                 B= (int)(Math.random( )*256); break;
@@ -430,8 +452,14 @@ public Color randomColor(int themeChoice){
 
 } // end random color
 
-
-
-
+private void printTransactions(){
+    ArrayList<String> strings = new ArrayList();
+                for(int i = 0; i < monkeyTown.transactions().size(); i++){
+                 
+                    strings.add(monkeyTown.transactions().get(i).printTransactionRecord());
+               
+                }
+     printResults(strings);
+} // end print transactions
 
 }// end class

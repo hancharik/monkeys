@@ -96,7 +96,7 @@ public class MonkeyMarket {
        int randomMerchant = (int)(Math.random()*monkeyMerchants.size());
        int randomCustomer = (int)(Math.random()*town.size());
        
-       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer), (transactions.size()+1));
+       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer), (transactions.size()+1), this);
        tempTrans.generateTransaction();
        transactions.add(tempTrans);
       System.out.println(" monkey transaction #" + i + " created.");
@@ -114,6 +114,7 @@ public class MonkeyMarket {
      // list merchants who sold a monkey or more
      for(int i = 0; i < monkeyMerchants.size(); i++){
          monkeyMerchants.get(i).printReceiptBook();
+         monkeyMerchants.get(i).reportTransactionsToTheKing();
      }
      // generate visible banner
      for(int i = 0; i <6; i++){
@@ -135,7 +136,24 @@ public class MonkeyMarket {
       
       return monkeyBucket;
   } 
-   
+ 
+
+  public ArrayList<Transaction> transactions(){
+      ArrayList<Transaction> tempTrans = new ArrayList<Transaction>();
+      
+      
+      for(int i = 0; i < transactions.size(); i++){
+        
+           tempTrans.add(transactions.get(i));
+     
+      }
+      
+      
+      
+      return tempTrans;
+  } 
+
+  
    public ArrayList peopleWhoOwnMonkeys(){
       
        ArrayList<TownsFolk> peepsWithMonkeys = new ArrayList<TownsFolk>();
@@ -173,6 +191,9 @@ public class MonkeyMarket {
           return growthRate;
       }  // end get growth rate
       
-      
+ public void reportTransToTheKing(Transaction t){
+     
+     transactions.add(t);
+ }   // end report to the king  
       
 }  // end class

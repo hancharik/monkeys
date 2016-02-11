@@ -43,9 +43,9 @@ public class TownsFolk extends JButton{
     
      public void recordTransaction(Transaction t){
       
-         Monkey m = t.monkey;
+      
        transactionHistory.add(t);
-       monkeys.add(m);
+     
        
    }  
     
@@ -83,22 +83,29 @@ public class TownsFolk extends JButton{
        ArrayList<String> transactionList = new ArrayList();
    // if there is at least one transaction, generate visible banner
    if(transactionHistory.size() > 0){
-     for(int i = 0; i < 1; i++){
+     
          String temp1 = "//////////////ssn #" + ssn + " has bought " + transactionHistory.size() + " monkeys....////////////////";
          String temp11 = "//////////////ssn #" + ssn + " has " + monkeys.size() + " monkeys....////////////////";
        System.out.println(temp1); 
        transactionList.add(temp1);
        transactionList.add(temp11);
+     for(int i = 0; i <  transactionHistory.size(); i++){
+          String temp2 = transactionHistory.get(i).printTransactionRecord();
+         // System.out.println(temp2); 
+          transactionList.add(temp2);
+           
+     }
+     transactionList.add(temp11);
+     for(int i = 0; i <  monkeys.size(); i++){
+          String temp22 = "" + monkeys.get(i).getId();
+         // System.out.println(temp2); 
+          transactionList.add(temp22);
+           
      }
    }          
         
             
-      for(int i = 0; i <  transactionHistory.size(); i++){
-          String temp2 = transactionHistory.get(i).printTransactionRecord();
-          System.out.println(temp2); 
-          transactionList.add(temp2);
-           
-     }
+      
       
       return transactionList;
        
@@ -109,12 +116,15 @@ public class TownsFolk extends JButton{
     
        public void buyMonkey(Monkey m){
       
+        m.newHome(this);
         monkeys.add(m);
         
     }
   
        public void sellMonkey(Monkey m){
       
+        
+        m.freeAgent();
         monkeys.remove(m);
         
     }

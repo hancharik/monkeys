@@ -17,9 +17,11 @@ public class Transaction {
     private int transactionId;
     private String record;
     private int increaseAmount;
+    private MonkeyMarket market;
     
-    public Transaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
-     increaseAmount =  m.increasePrice(mm.getMarket().getGrowthRate()); 
+    public Transaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id, MonkeyMarket market){
+     increaseAmount =  m.increasePrice(mm.getMarket().getGrowthRate());
+      this.market = market;
     monkey = m;
     monkeyMerchant = mm;
     townsFolk = t;
@@ -32,7 +34,9 @@ public class Transaction {
     
   public void generateTransaction(){
       
+      if(monkey.openMarketMonkey()){
      monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
+     townsFolk.buyMonkey(monkey);
      monkeyMerchant.recordTransaction(this);
      monkey.newHome(townsFolk);
      monkey.recordTransaction(this);
@@ -41,6 +45,18 @@ public class Transaction {
       //monkey.increasePrice();
       // monkeyMerchant.printReceiptBook();
       recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);
+      }else{
+       monkeyMerchant.p2pTransaction(monkey.thisMonkeysOwner(), townsFolk, monkey);
+     monkeyMerchant.recordTransaction(this);
+     monkey.newHome(townsFolk);
+     monkey.recordTransaction(this);
+     townsFolk.recordTransaction(this);
+      System.out.println("transaction id#" + transactionId + " generated");
+      //monkey.increasePrice();
+      // monkeyMerchant.printReceiptBook();
+      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);   
+      }
+      market.reportTransToTheKing(this);
   }  
  
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
