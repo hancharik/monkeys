@@ -130,6 +130,7 @@ public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee){
 
    public void recordTransaction(Transaction t){
       
+       monkeyMarket.reportTransToTheKing(t);
        transactionHistory.add(t);
        
    }
@@ -137,10 +138,10 @@ public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee){
 public void reportTransactionsToTheKing(){
     
     
-    for(int i = 0; i <  transactionHistory.size(); i++){
+   // for(int i = 0; i <  transactionHistory.size(); i++){
          
-           monkeyMarket.reportTransToTheKing(transactionHistory.get(i));
-     }
+          // monkeyMarket.reportTransToTheKing(transactionHistory.get(i));
+    // }
     
     
     

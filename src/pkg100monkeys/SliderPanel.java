@@ -130,8 +130,8 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         
     sliderOfMerchants = new JSlider(JSlider.HORIZONTAL, 1, 10, monkeyPanel.numberOfMerchants);
     sliderOfTownsPeople = new JSlider(JSlider.HORIZONTAL, 1, 100, monkeyPanel.numberOfTownsPeople);
-    sliderOfTransactions = new JSlider(JSlider.HORIZONTAL, 1, 1000, monkeyPanel.numberOfTransactions);
-    sliderOfGrowthRate = new JSlider(JSlider.HORIZONTAL, 0, 100, monkeyPanel.growthRate);
+    sliderOfTransactions = new JSlider(JSlider.HORIZONTAL, 0, 1000, monkeyPanel.numberOfTransactions);
+    sliderOfGrowthRate = new JSlider(JSlider.HORIZONTAL, 0, 1000, monkeyPanel.growthRate);
     sliderOfTheme = new JSlider(JSlider.HORIZONTAL, 0, 15, monkeyPanel.theme);
     
     

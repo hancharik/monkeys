@@ -32,6 +32,10 @@ public class Transaction implements Runnable{
     }
     
     
+    
+    ////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    
   public void generateTransaction(){
       
       if(monkey.openMarketMonkey()){
@@ -56,9 +60,17 @@ public class Transaction implements Runnable{
       // monkeyMerchant.printReceiptBook();
       recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);   
       }
-      market.reportTransToTheKing(this);
-  }  
+      //market.reportTransToTheKing(this);
+      
+  } // end generate transaction 
  
+  
+  //////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  
+  
+  
+  
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
       
         String space = "     ";// String space = "\t";
@@ -93,7 +105,17 @@ public class Transaction implements Runnable{
         return record;
     }
 
-    @Override
+    
+    
+     public int getTransactionID(){
+        
+        return transactionId;
+    }
+     
+     
+     
+     
+     @Override
     public void run() {
        
     }

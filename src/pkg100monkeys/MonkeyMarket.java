@@ -56,6 +56,7 @@ public class MonkeyMarket {
         
  private void makeMarket(){
      
+     transactions = new ArrayList<Transaction>();
      MonkeyBucket mobu = new MonkeyBucket();
         monkeyBucket = mobu.bucket;
         makeMonkeyMerchants(numberOfMerchants);
@@ -90,17 +91,17 @@ public class MonkeyMarket {
   
    private void generateMonkeyEconomy(int numberOfTransactions){
      
-       transactions = new ArrayList();
+       
        
        for(int i = 1; i <= numberOfTransactions; i++){
        
        int randomMonkey = (int)(Math.random()*monkeyBucket.size());
        int randomMerchant = (int)(Math.random()*monkeyMerchants.size());
        int randomCustomer = (int)(Math.random()*town.size());
-       
-       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer), (transactions.size()+1), this);
+       int tempID = transactions.size()+1;
+       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer), tempID, this);
        tempTrans.generateTransaction();
-       transactions.add(tempTrans);
+      // transactions.add(tempTrans);
       System.out.println(" monkey transaction #" + i + " created.");
      
        } // end for loop
@@ -109,7 +110,35 @@ public class MonkeyMarket {
        
  }   // end generate monkey economy
   
- 
+   
+   
+   
+   
+   
+    private void sellOneMonkey(){
+     
+       
+       
+       
+       
+       int randomMonkey = (int)(Math.random()*monkeyBucket.size());
+       int randomMerchant = (int)(Math.random()*monkeyMerchants.size());
+       int randomCustomer = (int)(Math.random()*town.size());
+       int tempID = transactions.size()+1;
+       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer),tempID , this);
+       tempTrans.generateTransaction();
+       transactions.add(tempTrans);
+      System.out.println(" monkey transaction #" + tempTrans.getTransactionID() + " created.");
+     
+       
+       
+         System.out.println(" there should be " + transactions.size() + " transactions.");
+       
+ }   // end generate monkey economy
+    
+    
+    
+    
    
  private void generateSalesLogs(){
      
@@ -205,8 +234,16 @@ public class MonkeyMarket {
       }  // end get growth rate
       
  public void reportTransToTheKing(Transaction t){
-     
+     // we need to hear about any transaction here. 
+     //this is the main accounting ledger for the king
      transactions.add(t);
  }   // end report to the king  
-      
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 }  // end class
