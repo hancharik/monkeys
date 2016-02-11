@@ -17,6 +17,8 @@ public class TownsFolk extends JButton{
     private int ssn;
     private ArrayList<Transaction> transactionHistory;
     private ArrayList<Monkey> monkeys;
+    private boolean uniqueID = false;
+    
     
     public TownsFolk(){
     
@@ -26,17 +28,26 @@ public class TownsFolk extends JButton{
         ssn = 0;
 }
     
-     public TownsFolk(int id){
+     public TownsFolk(int id, boolean unique){
+         
+         uniqueID = unique;
     
         monkeys = new ArrayList<Monkey>();
          transactionHistory = new ArrayList<Transaction>();
-        //ssn = id;
-        ssn = setSSN();
+         // i think i want hash numbers for ssn number, not sure, so ther is a variable to show town id or unique ssn
+         if(uniqueID){
+             ssn = setSSN(); 
+         }else{
+            ssn = id;
+         }
+       
+       
+        
 }
     
     
  private int setSSN(){
-    int tempssn = (int)( Math.random()*1000) + 1;
+    int tempssn = (int)( Math.random()*1000000) + 1;
     
      return tempssn;
  }
@@ -79,7 +90,7 @@ public class TownsFolk extends JButton{
         
         return ssn;
     }
-    
+   
     
          public ArrayList<String> transactionArray(){
          
@@ -91,7 +102,7 @@ public class TownsFolk extends JButton{
          String temp11 = "//////////////ssn #" + ssn + " has " + monkeys.size() + " monkeys....////////////////";
        System.out.println(temp1); 
        transactionList.add(temp1);
-       transactionList.add(temp11);
+       
      for(int i = 0; i <  transactionHistory.size(); i++){
           String temp2 = transactionHistory.get(i).printTransactionRecord();
          // System.out.println(temp2); 
@@ -100,7 +111,7 @@ public class TownsFolk extends JButton{
      }
      transactionList.add(temp11);
      for(int i = 0; i <  monkeys.size(); i++){
-          String temp22 = "" + monkeys.get(i).getId();
+          String temp22 =  monkeys.get(i).getName();
          // System.out.println(temp2); 
           transactionList.add(temp22);
            

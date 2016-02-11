@@ -24,7 +24,7 @@ public class Monkey extends JButton{
     private int mojo;
     private ArrayList<Transaction> transactionHistory;
     private Color color;
-    
+    private String fullName;
     
     
     public Monkey(int number){
@@ -45,7 +45,13 @@ public class Monkey extends JButton{
         mojo = 0;
         transactionHistory = new ArrayList<Transaction>();
         price = 100;
-  
+        fullName = nameMonkey(true);
+        
+        
+        
+        
+        
+        
         
     } // end make money
     
@@ -91,6 +97,10 @@ public class Monkey extends JButton{
        
        return monkeyId;
    } 
+        public String getName(){
+       
+       return fullName;
+   } 
    public void recordTransaction(Transaction t){
       
        transactionHistory.add(t);
@@ -122,8 +132,9 @@ public class Monkey extends JButton{
    if(transactionHistory.size() > 0){
      for(int i = 0; i < 1; i++){
          String temp1 = "//////////////   monkey #" + monkeyId + " has " + transactionHistory.size() + " transactions....////////////////";
-       System.out.println(temp1); 
-       transactionList.add(temp1);
+         String temp12 = "//////////////  " + fullName + " has " + transactionHistory.size() + " transactions....////////////////";
+       System.out.println(temp12); 
+       transactionList.add(temp12);
      }
    }          
         
@@ -134,10 +145,24 @@ public class Monkey extends JButton{
           transactionList.add(temp2);
            
      }
-      String temp11 = "//////////////   worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    ////////////////";
+      
+      
+       
+       
+      
+      String temp11;
+      if(owner!=null){
+      temp11 = "" + fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
+      }else{
+       temp11 = "" + fullName + " is worth $"  + price + ", owned by NO ONE" ; 
+      }
       transactionList.add(temp11);
       return transactionList;
        
+      
+      
+      
+      
    }  // end transaction array
       
       
@@ -185,6 +210,149 @@ public class Monkey extends JButton{
       
       return owner;
   }
+  
+ 
+  private String nameMonkey(Boolean isMonkey){
+      
+      String title = "";
+      String fName = "";
+      String mName = "";
+      String lName = "";
+      String fullName = "";
+      
+      fullName = title + fName + mName + lName;
+      
+      int titleChoice = (int)(Math.random( )*20)+1;
+      int firstNameChoice = (int)(Math.random( )*20)+1;
+      int lastNameChoice = (int)(Math.random( )*20)+1;
+      int middleNameChoice = 1;
+      if(isMonkey){
+      int theChanceOfAMonkeyHavingAFirstName = (int)(Math.random( )*100)+1;
+      // i'd give it about a 30% chance that a monkey is going to have a first name...
+        if(theChanceOfAMonkeyHavingAFirstName > 30){
+            // so anything higher than 30 on a 1-100 scale will set this choice to 1, which returns an empty string
+            firstNameChoice = 1;
+            
+        }else{
+            
+            firstNameChoice = (int)(Math.random( )*20)+1;
+             // but if it does have a first name, then the chances of it having a middle name are rather high
+           int theChanceOfAMonkeyHavingAMiddleName = (int)(Math.random( )*100)+1;
+           
+            if(theChanceOfAMonkeyHavingAMiddleName > 30){
+            middleNameChoice  = (int)(Math.random( )*20)+2;
+            } 
+        }
+      }
+      
+      switch(titleChoice){
+          case 1: title = "Emperor"; break;
+          case 2: title = "Mr."; break;  
+          case 3: title = "Miss"; break;  
+          case 4: title = "Mr."; break;  
+          case 5: title = "Ms."; break;  
+          case 6: title = "Little"; break;  
+          case 7: title = ""; break;
+          case 8: title = "Dr."; break;  
+          case 9: title = ""; break;
+          case 10: title = ""; break;  
+          case 11: title = ""; break;
+          case 12: title = ""; break;  
+          case 13: title = ""; break;  
+          case 15: title = ""; break;  
+          case 16: title = ""; break;  
+          case 17: title = ""; break;
+          case 18: title = "Dr."; break;  
+          case 19: title = ""; break;
+          case 20: title = ""; break;  
+          case 21: title = "Little Missy"; break;
+      }
+      switch(firstNameChoice){
+          case 1: fName = ""; break;  // monkeys usually don't have first names
+          case 2: fName = "Johhny"; break;  
+          case 3: fName = "Walter"; break;  
+          case 4: fName = "Skippy"; break;  
+          case 5: fName = "Molly"; break;
+          case 6: fName = "Magilicuddy"; break;  
+          case 7: fName = "Mopsy"; break;
+          case 8: fName = "Dr. of Hugs"; break;  
+          case 9: fName = "Peabody"; break;
+          case 10: fName = ""; break;  
+          case 11: fName = ""; break;
+          case 12: fName = "Harry"; break;  
+          case 13: fName = "Miss"; break;  
+          case 14: fName = "Mr."; break;  
+          case 15: fName = "Ms."; break;  
+          case 16: fName = ""; break;  
+          case 17: fName = "Rene"; break;
+          case 18: fName = "Dr."; break;  
+          case 19: fName = ""; break;
+          case 20: fName = ""; break;  
+          case 21: fName = ""; break;
+      }
+       switch(middleNameChoice){
+          case 1: mName = ""; break;  // monkeys usually don't have first names
+          case 2: mName = "Johhny"; break;  
+          case 3: mName = "Walter"; break;  
+          case 4: mName = "Skippy"; break;  
+          case 5: mName = "Molly"; break;
+          case 6: mName = "Magilicuddy"; break;  
+          case 7: mName = "Mopsy"; break;
+          case 8: mName = "Dr. of Hugs"; break;  
+          case 9: mName = "Peabody"; break;
+          case 10: mName = ""; break;  
+          case 11: mName = ""; break;
+          case 12: mName = "Harry"; break;  
+          case 13: mName = "Miss"; break;  
+          case 14: mName = "Mr."; break;  
+          case 15: mName = "Ms."; break;  
+          case 16: mName = ""; break;  
+          case 17: mName = "Rene"; break;
+          case 18: mName = "Dr."; break;  
+          case 19: mName = ""; break;
+          case 20: mName = ""; break;  
+          case 21: mName = ""; break;
+      }
+      switch(lastNameChoice){
+          case 1: lName = "Squiggles"; break;
+          case 2: lName = "Pinky"; break;  
+          case 3: lName = "Martin"; break;  
+          case 4: lName = "Monroe"; break;  
+          case 5: lName = "Murphy"; break;  
+          case 6: lName = "Magilicuddy"; break;  
+          case 7: lName = "Mopsy"; break;
+          case 8: lName = "Dr. of Hugs"; break;  
+          case 9: lName = "Peabody"; break;
+          case 10: lName = "Einstein"; break;  
+          case 11: lName = "Baldwin"; break;
+          case 12: lName = "O'Keafe"; break;  
+          case 13: lName = "Twain"; break;  
+          case 14: lName = "Bush"; break;  
+          case 15: lName = "Peepers"; break;  
+          case 16: lName = "Cronkite"; break;  
+          case 17: lName = "Potter"; break;
+          case 18: lName = "Oppenheimer"; break;  
+          case 19: lName = "Lord of the Dance"; break;
+          case 20: lName = "Jenkins"; break;  
+          case 21: lName = "Baldwin"; break;
+      }
+      
+ 
+      checkForDuplicateNames();
+      fullName = title  + " " +fName + " " + mName + " " + lName;
+      checkForDuplicateNames();
+      return fullName;
+  } // end nameMonkey
+  
+  
+  private void checkForDuplicateNames(){
+      
+    // check to see if the name is unique
+    
+}
+  
+  
+  
   
   
 }  // end class

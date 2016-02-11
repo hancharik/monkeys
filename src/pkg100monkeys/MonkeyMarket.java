@@ -19,6 +19,8 @@ public class MonkeyMarket {
     private int numberOfTransactions = 100;
     private int growthRate = 100;
     
+    private boolean respectForPrivacy = false;
+    
     
     
     
@@ -77,7 +79,7 @@ public class MonkeyMarket {
       town = new ArrayList();
       monkeyOwners = new ArrayList();
       for(int s = 0; s < numberOfTownies; s++){
-       TownsFolk townie = new TownsFolk(s); 
+       TownsFolk townie = new TownsFolk(s, respectForPrivacy); 
         town.add(townie);
        System.out.println("townsfolk #" + (s+1) + "(ssn #" + townie.getSSN() + ") created, town size :" + town.size());
       

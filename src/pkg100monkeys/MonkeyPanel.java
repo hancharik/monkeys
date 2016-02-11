@@ -42,12 +42,16 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JButton startButton;
     JButton showTransButton;
     JButton showPeopleButton;
+    JButton showNamesButton;
     
     SliderPanel sliderPanel;
     
     JPanel monkeyPanel;
     JPanel monkeyMerchantPanel;
     JPanel peopleWithMonkeysPanel;
+    
+    private String htmlstart;
+    private String htmlend;
     
     int numberOfMerchants = 10;
     int numberOfTownsPeople = 100;
@@ -103,7 +107,12 @@ private void createUI(){
     showTransButton.addActionListener(this);
     add(showTransButton);
     
-    
+    showNamesButton = new JButton("show monkey names");
+    showNamesButton.setBounds(718,454,160,40);
+    showNamesButton.setBackground(Color.yellow);
+    //showTransButton.setVisible(false);
+    showNamesButton.addActionListener(this);
+    add(showNamesButton);
     
     startButton = new JButton("start");
     startButton.setBounds(948,244,160,40);
@@ -187,7 +196,7 @@ private void createUI(){
     showText.setBackground(Color.yellow);
     scroll = new JScrollPane (showText, 
    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scroll.setBounds(758,6,520,220);
+    scroll.setBounds(758,6,620,220);
     add(scroll);
     
     
@@ -344,7 +353,8 @@ private void colorSoldMonkeys(){
            merchantButtons.add(experiencedSellers.get(i));
            merchantButtons.get(i).addActionListener(this);
         saleCount = saleCount + merchantButtons.get(i).getNumberOfReceipts(); 
-       merchantButtons.get(i).setText("" + merchantButtons.get(i).getNumberOfReceipts());//b.setText("" + a.get(i).getPrice());
+        int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
+       merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
        merchantButtons.get(i).setBackground(randomColor(theme));
        
       
@@ -433,7 +443,17 @@ private void colorSoldMonkeys(){
                      quickSimButton2.setVisible(true);
 
                 }
-                 
+                  if (obj == showNamesButton){
+                    
+                      scroll.setBounds(892,6,452,620);
+                    titleLabel.setVisible(false);
+                    peopleWithMonkeysPanel.setVisible(false);
+                    showTransButton.setVisible(false);
+                    showPeopleButton.setVisible(true);
+                     quickSimButton2.setVisible(false);
+                     printMonkeyNames();
+
+                }
                 
                 if (obj == quickSimButton){
 
@@ -523,10 +543,11 @@ private void colorSoldMonkeys(){
 public void printResults(ArrayList<String> s){
      
     showText.setText(null);
-     
+     htmlstart = "";//"<html><h2><font color='blue'>";
+        htmlend = "\n";//"</font><h1></html>";
        for(int i = 0; i < s.size(); i++){
           
-          showText.append(s.get(i) + "\n"); 
+          showText.append(htmlstart +s.get(i) + htmlend); 
        }
      
  }
@@ -632,5 +653,25 @@ private void printTransactions(){
                 }
      printResults(strings);
 } // end print transactions
+
+
+
+
+
+
+private void printMonkeyNames(){
+    ArrayList<String> strings = new ArrayList();
+   String space = "\t";
+                for(int i = 0; i < monkeyButtons.size(); i++){
+                 
+                    strings.add(  i + space + monkeyButtons.get(i).getName());
+               
+                }
+     printResults(strings);
+} // end print transactions
+
+
+
+
 
 }// end class

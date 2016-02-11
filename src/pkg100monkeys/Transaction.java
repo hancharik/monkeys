@@ -61,14 +61,15 @@ public class Transaction {
  
     private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
       
+        String space = "";// String space = "\t";
        
-                String temp1 = "transaction id #" + id + ":  monkey #" + m.getId() + "\nsold by merchant #" + mm.getMerchantId() 
+                String temp1 = space + "transaction id #" + id + ":  " + m.getName() + "\nsold by merchant #" + mm.getMerchantId() 
                     + " to ssn #" + t.getSSN() + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp2 = "transaction id #" + id + ":  monkey #" + m.getId() + "sold by merchant #" + mm.getMerchantId() 
+                String temp2 = space + "transaction id #" + id + ":  " + m.getName() +  "sold by merchant #" + mm.getMerchantId() 
                 + " to ssn #" + t.getSSN() + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp3 = "trans id #" + id + "  monkey #" + m.getId() + " merchant #" + mm.getMerchantId() 
+                String temp3 = space + "trans id #" + id + "  " + m.getName() + " merchant #" + mm.getMerchantId() 
                 + "   ssn #" + t.getSSN() + " for $" + m.getPrice() + " ( + " + increaseAmount%100 + "%)";
-                String temp4 = "trans id # " + id + "\tmonkey # " + m.getId() + "\tmerchant # " + mm.getMerchantId() 
+                String temp4 = space + "trans id # " + id + "\t" + m.getName() +   "\tmerchant # " + mm.getMerchantId() 
                 + "\tssn # " + t.getSSN() + "\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
         record = temp4;
      
