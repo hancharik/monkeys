@@ -137,7 +137,11 @@ public class MonkeyMarket {
       return monkeyBucket;
   } 
  
-
+  public ArrayList town(){
+      
+      return town;
+  } 
+ 
   public ArrayList<Transaction> transactions(){
       ArrayList<Transaction> tempTrans = new ArrayList<Transaction>();
       

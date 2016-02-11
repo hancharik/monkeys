@@ -30,6 +30,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JLabel titleLabel;
     
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
+    ArrayList<TownsFolk> peopleButtons;
     ArrayList<MonkeyMerchant> experiencedSellers;
     ArrayList<Monkey> monkeyButtons;
     ArrayList<Transaction> transactions;
@@ -37,6 +38,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JButton monkeyPictureButton;
     JButton startButton;
     JButton showTransButton;
+    JButton showPeopleButton;
     
     SliderPanel sliderPanel;
     
@@ -51,9 +53,10 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     int growthRate = 100;
     int saleCount = 0;
     int numMonkeyz = 0;
+    int monkeyOwners = 0;
     
     JTextArea showText;
-    
+    JScrollPane scroll;
     
             
     public MonkeyPanel(){
@@ -66,7 +69,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
         
         createUI();
         
-        setLabel();
+        //setLabel();
         
     }  // end constructor
     
@@ -83,15 +86,23 @@ private void createUI(){
     //sliderPanel.setVisible(false);
     add(sliderPanel);
     
+    showPeopleButton = new JButton("show people");
+    showPeopleButton.setBounds(696,244,160,40);
+    showPeopleButton.setBackground(Color.yellow);
+    showPeopleButton.setVisible(false);
+    showPeopleButton.addActionListener(this);
+    add(showPeopleButton);
+    
     showTransButton = new JButton("show transactions");
-    showTransButton.setBounds(708,244,160,40);
+    showTransButton.setBounds(696,244,160,40);
+    showTransButton.setBackground(Color.yellow);
     //showTransButton.setVisible(false);
     showTransButton.addActionListener(this);
     add(showTransButton);
     
     monkeyPictureButton = new JButton("new");
     monkeyPictureButton.setIcon(new ImageIcon("images/monkey.jpg"));
-    monkeyPictureButton.setBounds(728,364,120,120);
+    monkeyPictureButton.setBounds(712,364,120,120);
    monkeyPictureButton.setBackground(randomColor(theme));
     monkeyPictureButton.addActionListener(this);
     add(monkeyPictureButton);
@@ -109,22 +120,24 @@ private void createUI(){
     
 
     
-    numberOfMonkeysLabel = new JLabel("numberOfMonkeysLabel");
+    numberOfMonkeysLabel = new JLabel("");
     numberOfMonkeysLabel.setBounds(920,84,420,42);
     add(numberOfMonkeysLabel);
-    trustTheMonkeysLabel = new JLabel("trustTheMonkeysLabel");
-    trustTheMonkeysLabel.setBounds(710,304,420,42);
+    trustTheMonkeysLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
+    trustTheMonkeysLabel.setBounds(694,304,420,42);
     add(trustTheMonkeysLabel);
-    titleLabel = new JLabel("100 monkeys");
-    titleLabel.setBounds(960,14,180,40);
+    titleLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
+    titleLabel.setBounds(1014,14,180,40);
     titleLabel.setBackground(Color.yellow);
     add(titleLabel);
-   showText = new JTextArea();
-    showText.setBounds(800,10,520,220);
+    
+    
+    showText = new JTextArea();
+    //showText.setBounds(840,0,520,220);
     showText.setBackground(Color.yellow);
-    JScrollPane scroll = new JScrollPane (showText, 
+    scroll = new JScrollPane (showText, 
    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scroll.setBounds(800,10,520,220);
+    scroll.setBounds(824,6,520,220);
     add(scroll);
     
     
@@ -145,20 +158,20 @@ private void makeMonkeyPanels(){
     monkeyTown = new MonkeyMarket(numberOfMerchants, numberOfTownsPeople, numberOfTransactions, growthRate);  // this generates the data in the game
     
     monkeyPanel = monkeyPanel();
-    monkeyPanel.setBounds(0,0,680,580);
+    monkeyPanel.setBounds(6,6,680,580);
     
     peopleWithMonkeysPanel = peopleWithMonkeysPanel();
     peopleWithMonkeysPanel.setBounds(900,240,420,420);
     
     monkeyMerchantPanel = merchantPanel();
-    monkeyMerchantPanel.setBounds(0,640,680,60);
+    monkeyMerchantPanel.setBounds(6,640,680,60);
     
     
      add(monkeyPanel);
      add(peopleWithMonkeysPanel);
      add(monkeyMerchantPanel);
      
-     
+  
      
     repaint();
     
@@ -202,7 +215,7 @@ private JPanel monkeyPanel(){
 private void colorSoldMonkeys(){
    for(int i = 0; i < monkeyButtons.size(); i++){
         if(monkeyButtons.get(i).openMarketMonkey()){
-         monkeyButtons.get(i).setColor(Color.GRAY);
+         monkeyButtons.get(i).setColor(Color.BLACK);
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());   
         }
     } 
@@ -212,29 +225,45 @@ private void colorSoldMonkeys(){
  private JPanel peopleWithMonkeysPanel(){
      JPanel peepsWithMonkPan = new JPanel();
      peepsWithMonkPan.setLayout(new GridLayout(10 ,10));
-         peopleWhoOwnMonkeys = monkeyTown.peopleWhoOwnMonkeys();
-    // String bannre = peopleWhoOwnMonkeys.size() + " people own " + numMonkeyz + " monkeys";
-     //numberOfMonkeysLabel.setText(bannre);
-   // for(int i = 0; i < peopleWhoOwnMonkeys.size() ; i++){
+         peopleButtons = monkeyTown.town();
+    colorButtonsOfPeopleWithMonkeys();
     for(int i = 0; i < 100 ; i++){   
-       
-       if(i<peopleWhoOwnMonkeys.size()){
-           peopleWhoOwnMonkeys.get(i).addActionListener(this);
-           numMonkeyz =  numMonkeyz + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys();
-       peopleWhoOwnMonkeys.get(i).setText("" + peopleWhoOwnMonkeys.get(i).getNumberOfMonkeys());//b.setText("" + a.get(i).getPrice());
-       peopleWhoOwnMonkeys.get(i).setBackground(randomColor(theme));
-       peepsWithMonkPan.add(peopleWhoOwnMonkeys.get(i));
-       }else{
-           TownsFolk blank = new TownsFolk();
-         blank.setBackground(Color.black);
-          peepsWithMonkPan.add(blank);
-       }
+       peopleButtons.get(i).addActionListener(this);
+      peepsWithMonkPan.add(peopleButtons.get(i));
       
     }
     return peepsWithMonkPan;
 } // end people with monkeys panel   
  
  
+ 
+ 
+  private void colorButtonsOfPeopleWithMonkeys(){
+    
+    for(int i = 0; i < 100 ; i++){   
+       
+       if(peopleButtons.get(i).getNumberOfMonkeys()>0){
+           monkeyOwners = monkeyOwners++;
+           peopleButtons.get(i).addActionListener(this);
+           numMonkeyz =  numMonkeyz + peopleButtons.get(i).getNumberOfMonkeys();
+       peopleButtons.get(i).setText("" + peopleButtons.get(i).getNumberOfMonkeys());//b.setText("" + a.get(i).getPrice());
+       peopleButtons.get(i).setBackground(randomColor(theme));
+      
+       }else{
+          
+         peopleButtons.get(i).setBackground(Color.black);
+         
+       }
+      
+    }
+  
+} // end people with monkeys panel
+  
+  
+  
+  
+  
+  
   private JPanel merchantPanel(){
      JPanel mercPanel = new JPanel();
      saleCount = 0;
@@ -267,15 +296,15 @@ private void colorSoldMonkeys(){
 } // end merchant panel 
   
   
- public void setLabel(){
+ public void setLabel1(){
      
-      String bannre = peopleWhoOwnMonkeys.size() + " people own " + numMonkeyz + " monkeys";
-       String bannre2 = "<html><h2><font color='blue'>" + peopleWhoOwnMonkeys.size() + " people own "  + "</font><font color='red'>" + numMonkeyz + " monkeys" + "</font><h2></html>";
+     // String bannre = monkeyOwners + " people own " + numMonkeyz + " monkeys";
+      // String bannre2 = "<html><h2><font color='blue'>" + monkeyOwners + " people own "  + "</font><font color='red'>" + numMonkeyz + " monkeys" + "</font><h2></html>";
        String bannre3 = "<html><h2><font color='blue'>" +  "trust me!"  + "</font><font color='red'>" +  " ... just kidding, this needs afixin'" + "</font><h1></html>";
        String bannre4 = "<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>";
        String bannre5 = "<html><h2><font color='black' >" +  "transaction count is good"  + "</font></h2></html>";
-       String bannre6 = "<html><h3><font color='black' >" +  "transaction count is NOT good\n"  + "</font><font color='red'>" + "(returned " + saleCount + ", expected:" + numberOfTransactions +  ")" + "</font><h3></html>";
-     numberOfMonkeysLabel.setText(bannre2); 
+      // String bannre6 = "<html><h3><font color='black' >" +  "transaction count is NOT good\n"  + "</font><font color='red'>" + "(returned " + saleCount + ", expected:" + numberOfTransactions +  ")" + "</font><h3></html>";
+    numberOfMonkeysLabel.setText(bannre4); 
       if(saleCount==numberOfTransactions){
         trustTheMonkeysLabel.setText(bannre4);
     }else{
@@ -309,12 +338,27 @@ private void colorSoldMonkeys(){
                 }
                 
                 if (obj == showTransButton){
-
-                    showTransButton.setBackground(Color.yellow);
+                    scroll.setBounds(866,6,480,620);
+                    titleLabel.setVisible(false);
+                    peopleWithMonkeysPanel.setVisible(false);
+                    showTransButton.setVisible(false);
+                    showPeopleButton.setVisible(true);
                      printTransactions();
                   
 
                 }
+                 if (obj == showPeopleButton){
+                     showText.setText(null);
+                    scroll.setBounds(824,6,520,220);
+                    titleLabel.setVisible(true);
+                    peopleWithMonkeysPanel.setVisible(true);
+                    showPeopleButton.setVisible(false);
+                    showTransButton.setVisible(true);
+                     
+                  
+
+                }
+                 
                 
                 if (obj == monkeyPictureButton){
 
@@ -350,12 +394,12 @@ private void colorSoldMonkeys(){
                 }
                  
                          
-                 for(int i = 0; i < peopleWhoOwnMonkeys.size(); i++){
+                 for(int i = 0; i < peopleButtons.size(); i++){
     
              
-                 if (obj ==  peopleWhoOwnMonkeys.get(i)){
-                     showText.setBackground(peopleWhoOwnMonkeys.get(i).getBackground());
-                     printResults(peopleWhoOwnMonkeys.get(i).transactionArray());
+                 if (obj ==  peopleButtons.get(i)){
+                     showText.setBackground(peopleButtons.get(i).getBackground());
+                     printResults(peopleButtons.get(i).transactionArray());
                     break;  
                     }
        

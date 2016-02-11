@@ -66,6 +66,9 @@ public class TownsFolk extends JButton{
          } // end if
    
    }  // end print transactions
+       
+         
+         
          
        public int getNumberOfMonkeys(){
         
@@ -103,9 +106,7 @@ public class TownsFolk extends JButton{
            
      }
    }          
-        
-            
-      
+ 
       
       return transactionList;
        

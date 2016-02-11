@@ -111,7 +111,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
            case 11: temporarilyThis = "BLUES AGAIN"; break;
            case 12: temporarilyThis = "MOSTLY PURPLES"; break;
            case 13: temporarilyThis = "TRY NUMBER ONE"; break;
-           case 14: temporarilyThis = "Carlos moves like the wind on fire"; break;
+           case 14: temporarilyThis = "Graduate"; break;
        }
        //String gapSpacer = "\t" + temporarilyThis;
        
