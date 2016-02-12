@@ -411,7 +411,7 @@ private void colorMarket(){
        }else{
           
          peopleButtons.get(i).setBackground(Color.black);
-         
+         peopleButtons.get(i).addActionListener(this);
        }
       
     }
@@ -616,12 +616,22 @@ private void colorMarket(){
                        showPeople();
                      
                      showText.setBackground(peopleButtons.get(i).getBackground());
+                     
+                     /*
                      if(peopleButtons.get(i).getBackground().equals(Color.BLACK)){
                      showText.setBackground(Color.YELLOW); 
+                     showText.setText(null);
                      titleLabel.setVisible(true);
                      quickSimButton2.setVisible(true);
                      }
-                     
+                     */
+                     // deja vu al if statement
+                     if(peopleButtons.get(i).getBackground().equals(Color.BLACK)){
+                     showText.setBackground(Color.YELLOW); 
+                     //showText.setText(null);
+                     //titleLabel.setVisible(true);
+                     //quickSimButton2.setVisible(true);
+                     }
                      printResults(peopleButtons.get(i).transactionArray());
                      
                     break;  
