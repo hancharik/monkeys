@@ -31,9 +31,10 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
         monkeyMarket = mm;
         transactionHistory = new ArrayList();
         receipts = new ArrayList();
-        String addTitle = " receipt log of Merchant #" + (id + 1);
-        receipts.add(addTitle);
         merchantId = id + 1;
+        String addTitle = " receipt log of Merchant #" + merchantId;
+        receipts.add(addTitle);
+        
         //t = new Timer(100, this);
         //t.start();
         
@@ -43,9 +44,10 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
 
         transactionHistory = new ArrayList();
         receipts = new ArrayList();
-        String addTitle = " receipt log of Merchant #0";
-        receipts.add(addTitle);
         merchantId = 0;
+        String addTitle = " receipt log of Merchant #" + merchantId;
+        receipts.add(addTitle);
+        
 
     } // end constructor
 
@@ -99,14 +101,25 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
 
         ArrayList<String> transactionList = new ArrayList();
         // if there is at least one transaction, generate visible banner
-        if (receipts.size() > 1) {
-            for (int i = 0; i < 1; i++) {
-                String temp1 = "//////////////monkey merchant #" + merchantId + " has " + transactionHistory.size() + " transactions....////////////////";
-                System.out.println(temp1);
-                transactionList.add(temp1);
+        
+  /*      
+        if (receipts.size() > 0) {
+            for (int i = 0; i < receipts.size(); i++) {
+                String temp1 = "aaaaaaaaaaaaaaamonkey merchant #" + merchantId + " has " + transactionHistory.size() + " transactions....////////////////";
+                System.out.println(receipts.get(i));
+                transactionList.add(receipts.get(i));
             }
         }
-
+        */
+        String addTitle;
+        if (receipts.size() < 1) {
+             addTitle = "\t\tMerchant #" + merchantId + " has no sales";//String addTitle = " receipt log of Merchant #" + merchantId;
+        }else{
+             addTitle =  "\t\treceipt log of Merchant #" + merchantId;
+        }
+        transactionList.add(addTitle);
+        
+        
         for (int i = 0; i < transactionHistory.size(); i++) {
             String temp2 = transactionHistory.get(i).printTransactionRecord();
             System.out.println(temp2);

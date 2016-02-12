@@ -170,6 +170,16 @@ public class MonkeyMarket {
      }
  }  // end generate sales logs
    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   public ArrayList monkeys(){
       
       return monkeyBucket;
@@ -179,7 +189,18 @@ public class MonkeyMarket {
       
       return town;
   } 
+   public ArrayList merchants(){
+      
+      return monkeyMerchants;
+  } 
  
+   
+   
+   
+   
+   
+   
+   
   public ArrayList<Transaction> transactions(){
       ArrayList<Transaction> tempTrans = new ArrayList<Transaction>();
       

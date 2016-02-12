@@ -329,6 +329,12 @@ private void removeMonkeyPanels(){
      repaint();
 }// end make monkey panels
 
+
+
+
+
+
+
 private JPanel monkeyPanel(){
       JPanel monkPan = new JPanel();
       monkPan.setLayout(new GridLayout(10 ,10));
@@ -354,6 +360,11 @@ private void colorSoldMonkeys(){
     } 
     
 }
+
+
+
+
+
 
 private void colorMarket(){
     
@@ -397,6 +408,11 @@ private void colorMarket(){
  
  
  
+ 
+ 
+   
+ 
+ 
   private void colorButtonsOfPeopleWithMonkeys(){
     
     for(int i = 0; i < 100 ; i++){   
@@ -416,7 +432,7 @@ private void colorMarket(){
       
     }
   
-} // end people with monkeys panel
+} // end color buttons of people with monkeys panel
   
   
   
@@ -424,19 +440,67 @@ private void colorMarket(){
   
   
   private JPanel merchantPanel(){
+    
      JPanel mercPanel = new JPanel();
-     saleCount = 0;
+       mercPanel.setLayout(new GridLayout(1 ,10));
+         merchantButtons = monkeyTown.merchants();
+   // colorMerchantsWithTransactions();
+    for(int i = 0; i < 10 ; i++){   
+        
+        int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
+       merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
+       merchantButtons.get(i).setBackground(randomColor(theme));
+        
+        
+       merchantButtons.get(i).addActionListener(this);
+      mercPanel.add(merchantButtons.get(i));
+      
+    }
+      /*
+     
      mercPanel.setLayout(new GridLayout(1 ,10));//mercPanel.setLayout(new GridLayout(1 ,numberOfMerchants));
-         experiencedSellers = monkeyTown.merchantsWithSales();
+         
          merchantButtons = new ArrayList();
     // String bannre = peopleWhoOwnMonkeys.size() + " people own " + numMonkeyz + " monkeys";
      //numberOfMonkeysLabel.setText(bannre);
-    for(int i = 0; i < 10 ; i++){
+   
+       
+       /////////////////////////////////////////////////////////////////////
+       ///////////////////////////////////////////////////////////////////////////////
        
        
        
+       
+       
+       
+       
+       
+       
+       
+       
+        mercPanel.add(merchantButtons.get(i));
+       
+        
+    }  // end for loop
+    
+   
+     */
+    
+    return mercPanel;
+} // end merchant panel 
+  
+  
+   
+   private void colorMerchantsWithTransactions(){
+    
+       saleCount = 0;
+       experiencedSellers = monkeyTown.merchantsWithSales();
+       
+   for(int i = 0; i < 10 ; i++){
+       
+              
        if(i < experiencedSellers.size()){
-           merchantButtons.add(experiencedSellers.get(i));
+           
            merchantButtons.get(i).addActionListener(this);
         saleCount = saleCount + merchantButtons.get(i).getNumberOfReceipts(); 
         int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
@@ -445,23 +509,24 @@ private void colorMarket(){
        
       
        }else{
-           MonkeyMerchant blank = new MonkeyMerchant();
-           merchantButtons.add(blank);
+           
          merchantButtons.get(i).setBackground(Color.black);
          merchantButtons.get(i).addActionListener(this);
         
        }
-       
-        mercPanel.add(merchantButtons.get(i));
-        
-        
-    }  // end for loop
-    
+      
+    }
+  
+} // end color buttons of people with monkeys panel
    
-    
-    
-    return mercPanel;
-} // end merchant panel 
+  
+  
+  
+  
+  
+  
+  
+  
   
   
  public void setLabel1(){
@@ -598,8 +663,8 @@ private void colorMarket(){
                      showText.setBackground(merchantButtons.get(i).getBackground());
                      if(merchantButtons.get(i).getBackground().equals(Color.BLACK)){
                      showText.setBackground(Color.YELLOW); 
-                     titleLabel.setVisible(true);
-                     quickSimButton2.setVisible(true);
+                     //titleLabel.setVisible(true);
+                     //quickSimButton2.setVisible(true);
                      }
                      printResults(merchantButtons.get(i).transactionArray());
                     break;  
