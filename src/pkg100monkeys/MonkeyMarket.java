@@ -20,11 +20,12 @@ public class MonkeyMarket {
     private int growthRate = 100;
     
     private boolean respectForPrivacy = false;
-    
+    private boolean useTimer = false;
     
     
     
     private ArrayList<Monkey> monkeyBucket;
+    private ArrayList<Monkey> marketMonkeys;
     private ArrayList<MonkeyMerchant> monkeyMerchants;
     private ArrayList<TownsFolk>  town;
     private ArrayList<TownsFolk> monkeyOwners;
@@ -48,7 +49,12 @@ public class MonkeyMarket {
         this.growthRate = growthRate;
        
         makeMarket();
-        generateMonkeyEconomy(numberOfTransactions);
+        if(useTimer){
+          timedOrders();  
+        }else{
+         generateMonkeyEconomy(numberOfTransactions);   
+        }
+        
  
         generateSalesLogs();
     } // end constructor
@@ -59,6 +65,7 @@ public class MonkeyMarket {
      transactions = new ArrayList<Transaction>();
      MonkeyBucket mobu = new MonkeyBucket();
         monkeyBucket = mobu.bucket;
+        
         makeMonkeyMerchants(numberOfMerchants);
         makeTownsFolk(numberOfTownsPeople);
      
@@ -240,9 +247,21 @@ public class MonkeyMarket {
  }   // end report to the king  
   
  
+public void takeAMonkey(Monkey m){
+   for (int i = 0; i < monkeyBucket.size(); i ++) {
+     if(monkeyBucket.get(i).equals(m)){
+        monkeyBucket.remove(monkeyBucket.get(i) );  
+     }  
+   }
+} 
  
- 
- 
+ public void addAMonkey(Monkey m){
+   monkeyBucket.add(m); 
+}
+
+    private void timedOrders() {
+        // make timed orders
+    }
  
  
  

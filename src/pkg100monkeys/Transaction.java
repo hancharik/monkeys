@@ -38,29 +38,26 @@ public class Transaction implements Runnable{
     
   public void generateTransaction(){
       
-      if(monkey.openMarketMonkey()){
-     monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
-     townsFolk.buyMonkey(monkey);
-     monkeyMerchant.recordTransaction(this);
-     monkey.newHome(townsFolk);
-     monkey.recordTransaction(this);
-     townsFolk.recordTransaction(this);
-      System.out.println("transaction id#" + transactionId + " generated");
-      //monkey.increasePrice();
-      // monkeyMerchant.printReceiptBook();
-      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);
-      }else{
-       monkeyMerchant.p2pTransaction(monkey.thisMonkeysOwner(), townsFolk, monkey);
-     monkeyMerchant.recordTransaction(this);
-     monkey.newHome(townsFolk);
-     monkey.recordTransaction(this);
-     townsFolk.recordTransaction(this);
-      System.out.println("transaction id#" + transactionId + " generated");
-      //monkey.increasePrice();
-      // monkeyMerchant.printReceiptBook();
-      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);   
-      }
-      //market.reportTransToTheKing(this);
+        if(monkey.openMarketMonkey()){
+            
+  
+        buyFromMarketTransaction();
+  
+      
+        }else{
+          
+        int  percentage  = (int)(Math.random( )*100)+1;   
+         if(percentage < 34){
+            sellToMarketTransaction(); 
+         }else{
+            p2pTransaction();   
+         }   
+            
+            
+       
+          
+        }
+    
       
   } // end generate transaction 
  
@@ -117,7 +114,73 @@ public class Transaction implements Runnable{
      
      @Override
     public void run() {
-       
+       generateTransaction();
     }
 
+    private void buyFromMarketTransaction() {
+        
+        
+        monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
+        //sleep(4000);
+     townsFolk.buyMonkey(monkey);
+     monkeyMerchant.recordTransaction(this);
+     monkey.newHome(townsFolk);
+     monkey.recordTransaction(this);
+     townsFolk.recordTransaction(this);
+      System.out.println("transaction id#" + transactionId + " generated");
+      //monkey.increasePrice();
+      // monkeyMerchant.printReceiptBook();
+      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId); 
+      
+      
+    }  // end buy from market transaction
+    
+    
+    private void sellToMarketTransaction() {
+        
+        
+        monkeyMerchant.marketReturn(market, townsFolk, monkey);
+        //sleep(4000);
+     townsFolk.sellMonkey(monkey);
+     monkeyMerchant.recordTransaction(this);
+     monkey.freeAgent();
+     monkey.recordTransaction(this);
+     townsFolk.recordTransaction(this);
+      System.out.println("transaction id#" + transactionId + " generated");
+      //monkey.increasePrice();
+      // monkeyMerchant.printReceiptBook();
+      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId); 
+      
+      
+    }  // end sell to market transaction
+    
+    
+    
+    
+    
+
+    private void p2pTransaction() {
+        
+        
+     monkeyMerchant.p2pTransaction(monkey.thisMonkeysOwner(), townsFolk, monkey);
+     monkeyMerchant.recordTransaction(this);
+     monkey.newHome(townsFolk);
+     monkey.recordTransaction(this);
+     townsFolk.recordTransaction(this);
+      System.out.println("transaction id#" + transactionId + " generated");
+      //monkey.increasePrice();
+      // monkeyMerchant.printReceiptBook();
+      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);   
+      
+    } // end merchant p2p transaction
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 } // end class
