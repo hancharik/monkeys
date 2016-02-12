@@ -625,7 +625,7 @@ private void colorMarket(){
                      quickSimButton2.setVisible(true);
                      }
                      */
-                     // deja vu al if statement
+                     // deja vu alt if statement
                      if(peopleButtons.get(i).getBackground().equals(Color.BLACK)){
                      showText.setBackground(Color.YELLOW); 
                      //showText.setText(null);

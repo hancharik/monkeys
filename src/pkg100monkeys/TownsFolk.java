@@ -96,7 +96,7 @@ public class TownsFolk extends JButton{
          
        ArrayList<String> transactionList = new ArrayList();
    // if there is at least one transaction, generate visible banner
-   if(transactionHistory.size() > 0){
+   if(transactionHistory.size() > -1){
      String temp1;
      String temp11;
        if(uniqueID){
