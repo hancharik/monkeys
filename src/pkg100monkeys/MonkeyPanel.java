@@ -444,12 +444,12 @@ private void colorMarket(){
      JPanel mercPanel = new JPanel();
        mercPanel.setLayout(new GridLayout(1 ,10));
          merchantButtons = monkeyTown.merchants();
-   // colorMerchantsWithTransactions();
+    colorMerchantsWithTransactions();
     for(int i = 0; i < 10 ; i++){   
         
         int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
        merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
-       merchantButtons.get(i).setBackground(randomColor(theme));
+      // merchantButtons.get(i).setBackground(randomColor(theme));
         
         
        merchantButtons.get(i).addActionListener(this);
@@ -499,19 +499,19 @@ private void colorMarket(){
    for(int i = 0; i < 10 ; i++){
        
               
-       if(i < experiencedSellers.size()){
+       if(merchantButtons.get(i).numberOfTransactions() > 0){
            
-           merchantButtons.get(i).addActionListener(this);
-        saleCount = saleCount + merchantButtons.get(i).getNumberOfReceipts(); 
-        int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
-       merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
+        //   merchantButtons.get(i).addActionListener(this);
+       // saleCount = saleCount + merchantButtons.get(i).getNumberOfReceipts(); 
+      //  int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
+      // merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
        merchantButtons.get(i).setBackground(randomColor(theme));
        
       
        }else{
            
          merchantButtons.get(i).setBackground(Color.black);
-         merchantButtons.get(i).addActionListener(this);
+      //   merchantButtons.get(i).addActionListener(this);
         
        }
       

@@ -112,12 +112,15 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
         }
         */
         String addTitle;
-        if (receipts.size() < 1) {
+        if (receipts.size() < 2) {
              addTitle = "\t\tMerchant #" + merchantId + " has no sales";//String addTitle = " receipt log of Merchant #" + merchantId;
+              transactionList.add(addTitle);
         }else{
-             addTitle =  "\t\treceipt log of Merchant #" + merchantId;
+            String temp1 = "\t\tMerchant #" + merchantId + " has " + transactionHistory.size() + " transactions";
+                
+                transactionList.add(temp1);
         }
-        transactionList.add(addTitle);
+       
         
         
         for (int i = 0; i < transactionHistory.size(); i++) {
@@ -131,6 +134,15 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
 
     }  // end transaction array
 
+   public int numberOfTransactions(){
+       
+       int number = transactionHistory.size();
+       return number;
+   } 
+    
+    
+    
+    
     public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee) {
 
         seller.sellMonkey(monkee);
