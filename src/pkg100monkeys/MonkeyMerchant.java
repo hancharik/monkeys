@@ -34,8 +34,8 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
         String addTitle = " receipt log of Merchant #" + (id + 1);
         receipts.add(addTitle);
         merchantId = id + 1;
-        t = new Timer(100, this);
-        t.start();
+        //t = new Timer(100, this);
+        //t.start();
         
     } // end constructor
 

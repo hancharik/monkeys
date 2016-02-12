@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -209,7 +210,25 @@ private void createUI(){
     add(titleLabel);
     
       quickSimButton2 = new JButton("monkey pic 2");
-    quickSimButton2.setIcon(new ImageIcon("images/monkey.jpg"));
+      String picname = "images/monkey.jpg"; 
+     // ImageIcon monkeyPic = new ImageIcon(getClass().getResource("images/monkey.jpg"));
+                // ImageIcon monkeyPic = new ImageIcon(this.getClass().getClassLoader().getResource("images/monkey.jpg"));
+                ImageIcon monkeyPic = new ImageIcon(picname);
+      
+      //monkeyPic = ImageIO.read(getClass().getResource("images/monkey.jpg"));
+      System.out.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+             +  "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+                +  "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+                +  "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+              + this.getClass().getClassLoader().getResourceAsStream("images/monkey.jpg").toString() + "\n"
+//               + this.getClass().getResource("images/monkey.jpg").toString() + "\n"
+                +  "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+                +  "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+              + "YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+       //ImageIcon monkeyPic = new ImageIcon(this.getClass().getClassLoader().getResourceAsStream("images/monkey.jpg").toString());       
+              
+    quickSimButton2.setIcon(monkeyPic);
+    //quickSimButton2.setIcon(this.getClass().getClassLoader().getResourceAsStream("images/monkey.jpg"));
     quickSimButton2.setBounds(958,64,120,120);
    quickSimButton2.setBackground(randomColor(theme));
     quickSimButton2.addActionListener(this);
