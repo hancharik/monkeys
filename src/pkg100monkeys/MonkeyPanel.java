@@ -58,7 +58,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     int numberOfMerchants = 10;
     int numberOfTownsPeople = 100;
     int numberOfTransactions = 1;
-    int theme = 1;
+    int theme = 4;
     int growthRate = 100;
     int saleCount = 0;
     int numMonkeyz = 0;
@@ -257,11 +257,9 @@ private void createUI(){
 
 private int monkeysInTheMarket(){
     
-    
-     ArrayList temp = monkeyTown.peopleWhoOwnMonkeys();
-     int tempInt = temp.size();
+    int tempInt = monkeyTown.freeMarketMonkeys();
     int result = 100 - tempInt;
-    return result;
+    return monkeyTown.freeMarketMonkeys();
 }
 
 
@@ -338,11 +336,12 @@ private void removeMonkeyPanels(){
 private JPanel monkeyPanel(){
       JPanel monkPan = new JPanel();
       monkPan.setLayout(new GridLayout(10 ,10));
+     
     monkeyButtons = monkeyTown.monkeys();
-    for(int i = 0; i < monkeyButtons.size(); i++){
+    for(int i = 0; i < 100; i++){
         monkeyButtons.get(i).setRateOfGrowth(growthRate);
        monkeyButtons.get(i).addActionListener(this);
-        monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getPrice());
+        monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getId()); // monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getPrice());
          monkeyButtons.get(i).setColor(randomColor(theme));
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());
        monkPan.add( monkeyButtons.get(i));
@@ -352,8 +351,8 @@ private JPanel monkeyPanel(){
 } // end monkey panel
 
 private void colorSoldMonkeys(){
-   for(int i = 0; i < monkeyButtons.size(); i++){
-        if(monkeyButtons.get(i).openMarketMonkey()){
+   for(int i = 0; i < 100; i++){
+        if(monkeyButtons.get(i).thisMonkeysOwner().getSSN()==999){
          monkeyButtons.get(i).setColor(Color.YELLOW);
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());   
         }

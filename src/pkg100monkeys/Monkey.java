@@ -20,6 +20,7 @@ public class Monkey extends JButton{
     private int rateOfGrowth;
     private int levelOfDisease;
     private TownsFolk owner;
+    private ArrayList<TownsFolk> owners; 
     private Boolean openMarketMonkey;
     private int mojo;
     private ArrayList<Transaction> transactionHistory;
@@ -40,22 +41,17 @@ public class Monkey extends JButton{
     
     private void makeMonkey(){
         
+        owners = new  ArrayList<TownsFolk>(); 
+        transactionHistory = new ArrayList<Transaction>();
         rateOfGrowth = 100;
         primeMonkeyIndicator = 100;
         levelOfDisease = 0;
-        owner = null;
         openMarketMonkey = true;
         mojo = 0;
-        transactionHistory = new ArrayList<Transaction>();
         price = 100;
         fullName = nameMonkey(true);
-        
-        
-        
-        
-        
-        
-        
+        setOwnerToMarket();
+
     } // end make money
     
     
@@ -163,13 +159,13 @@ public class Monkey extends JButton{
       String temp11;
       
       if(thisMonkeyHasAName){
-          if(owner!=null){
+          if(owner.getSSN()!=999){
       temp11 = fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
       }else{
        temp11 = fullName + " is worth $"  + price + ", owned by NO ONE" ; 
       }
        }else{
-          if(owner!=null){
+          if(owner.getSSN()!=999){
       temp11 = "monkey #" + monkeyId + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
       }else{
        temp11 = "monkey #" + monkeyId +" is worth $"  + price + ", owned by NO ONE" ; 
@@ -208,20 +204,34 @@ public class Monkey extends JButton{
   } 
   
   
+    private void setOwnerToMarket() {
+        
+        TownsFolk marketAuctionHouse = new TownsFolk();
+        marketAuctionHouse.setName("Market");
+        marketAuctionHouse.setSSN(999);
+        
+        owners.add(marketAuctionHouse);
+        
+        owner = owners.get(0);
+        openMarketMonkey = true;
+    }
   
   
   
-    public void newHome(TownsFolk o){
+  
+    public void newHome(TownsFolk owner){
       
-      owner = o;
-      //owner.buyMonkey(this);
-      openMarketMonkey = false;
+        owners.add(owner);
+        owner = owners.get(owners.size()-1);
+        openMarketMonkey = false;
+         if(owner.getSSN()!=999){
+          openMarketMonkey = true;   
+         }
   }
   
   public void freeAgent(){
       
-      //owner.sellMonkey(this);
-      owner = null;
+      setOwnerToMarket();
       openMarketMonkey = true;
   }
   
@@ -427,7 +437,7 @@ public class Monkey extends JButton{
     // check to see if the name is unique
     
 }
-  
+
   
   
   

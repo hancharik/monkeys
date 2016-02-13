@@ -143,27 +143,41 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
     
     
     
-    public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee) {
+    public void p2pTransaction(TownsFolk seller, TownsFolk buyer, Monkey monkee, Transaction trans) {
 
         seller.sellMonkey(monkee);
         buyer.buyMonkey(monkee);
-
+        monkee.newHome(buyer);
+        recordTransaction(trans);
+        monkee.recordTransaction(trans);
+        buyer.recordTransaction(trans, 1);
+        seller.recordTransaction(trans, 2);
+        
     // take percentage of sale here....
     }// end person to person transaction
     
-    public void marketSale(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee) {
+    public void marketSale(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee, Transaction trans) {
 
-        monkeyMarket.takeAMonkey(monkee);
+        monkeyMarket.removeMonkey(monkee);
         buyer.buyMonkey(monkee);
-
+        monkee.newHome(buyer);
+        recordTransaction(trans);
+        monkee.recordTransaction(trans);
+        buyer.recordTransaction(trans,1);
+      
+         
     // take percentage of sale here....
     }// end person to person transaction
 
-    public void marketReturn(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee) {
+    public void marketReturn(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee, Transaction trans) {
 
-        monkeyMarket.addAMonkey(monkee);
+        monkeyMarket.addMonkey(monkee);
         buyer.sellMonkey(monkee);
-
+        monkee.freeAgent();
+        recordTransaction(trans);
+        monkee.recordTransaction(trans);
+        buyer.recordTransaction(trans,2);
+     
     // take percentage of sale here....
     }// end market return transaction
                

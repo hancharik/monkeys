@@ -16,24 +16,28 @@ public class TownsFolk extends JButton{
    
     private int ssn;
     private ArrayList<Transaction> transactionHistory;
+    private ArrayList<Transaction> buyTransactions;
+    private ArrayList<Transaction> sellTransactions;
     private ArrayList<Monkey> monkeys;
     private boolean uniqueID = false;
+    private String name = "no name yet";
     
     
-    public TownsFolk(){
+    public TownsFolk(){  // no int in the constructor means this is a robot
     
-        monkeys = new ArrayList<Monkey>();
-         transactionHistory = new ArrayList<Transaction>();
+        initArrays();
         //ssn = id;
-        ssn = 0;
-}
+        ssn = -1;  // should we use -1? we had this to zero, -1 lets us count the number of robots
+    }  // end robot constructor
+    
+    
     
      public TownsFolk(int id, boolean unique){
-         
+         // set unique to "false" if you want to use the id number
+         // setting to "true" creates an anonymous ssn number, not sure what we can use it for yet
          uniqueID = unique;
     
-        monkeys = new ArrayList<Monkey>();
-         transactionHistory = new ArrayList<Transaction>();
+        initArrays();
          // i think i want hash numbers for ssn number, not sure, so ther is a variable to show town id or unique ssn
          if(uniqueID){
              ssn = setSSN(); 
@@ -43,8 +47,18 @@ public class TownsFolk extends JButton{
        
        
         
-}
-    
+    }  // end human constructor
+ 
+     
+  private void initArrays(){
+      
+      monkeys = new ArrayList<Monkey>();
+         transactionHistory = new ArrayList<Transaction>();
+         buyTransactions = new ArrayList<Transaction>();
+        sellTransactions = new ArrayList<Transaction>();
+      
+  }   
+     
     
  private int setSSN(){
     int tempssn = (int)( Math.random()*1000000) + 1;
@@ -52,13 +66,30 @@ public class TownsFolk extends JButton{
      return tempssn;
  }
     
-     public void recordTransaction(Transaction t){
+ 
+ 
+     public void recordTransaction(Transaction t, int choice){ // 1 for buy, 2 for sell
       
+         if(choice == 1){
+             buyTransactions.add(t);
+            transactionHistory.add(t); 
+         }else{
+           // we don't add to transactionHistory here, as we only record the  buy transactions
+           //this is just a courtesy receipt for their records...
+           sellTransactions.add(t);
+         }
       
-       transactionHistory.add(t);
+       
      
        
-   }  
+   }  // end record transaction
+     
+     
+     
+     
+     
+     
+     
     
          public void printTransactions(){
          
@@ -79,24 +110,47 @@ public class TownsFolk extends JButton{
    }  // end print transactions
        
          
+     
          
-         
-       public int getNumberOfMonkeys(){
-        
+    public void setName(String n) {
+
+        name = n;
+
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    public int getNumberOfMonkeys() {
+
         return monkeys.size();
-    }      
-         
-    public int getSSN(){
-        
+    }
+
+    public int getSSN() {
+
         return ssn;
     }
-   
+
+public void setSSN(int n) {
+
+        ssn = n;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
          public ArrayList<String> transactionArray(){
          
        ArrayList<String> transactionList = new ArrayList();
    // if there is at least one transaction, generate visible banner
-   if(transactionHistory.size() > -1){
+   if(transactionHistory.size() >= 0){
      String temp1;
      String temp11;
        if(uniqueID){

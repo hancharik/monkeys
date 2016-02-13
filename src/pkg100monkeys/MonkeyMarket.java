@@ -22,10 +22,10 @@ public class MonkeyMarket {
     private boolean respectForPrivacy = false;
     private boolean useTimer = false;
     
+    public TownsFolk mainMarketAuction;
     
-    
-    private ArrayList<Monkey> monkeyBucket;
-    private ArrayList<Monkey> marketMonkeys;
+    private ArrayList<Monkey> oneHundredMonkeys;
+    private ArrayList<Monkey> availableMonkeys;
     private ArrayList<MonkeyMerchant> monkeyMerchants;
     private ArrayList<TownsFolk>  town;
     private ArrayList<TownsFolk> monkeyOwners;
@@ -63,9 +63,11 @@ public class MonkeyMarket {
  private void makeMarket(){
      
      transactions = new ArrayList<Transaction>();
-     MonkeyBucket mobu = new MonkeyBucket();
-        monkeyBucket = mobu.bucket;
-        
+     mainMarketAuction = new TownsFolk(998, false);
+     
+        MonkeyBucket mobu = new MonkeyBucket();
+        oneHundredMonkeys = mobu.bucket;
+        availableMonkeys  = mobu.bucket;
         makeMonkeyMerchants(numberOfMerchants);
         makeTownsFolk(numberOfTownsPeople);
      
@@ -102,11 +104,12 @@ public class MonkeyMarket {
        
        for(int i = 1; i <= numberOfTransactions; i++){
        
-       int randomMonkey = (int)(Math.random()*monkeyBucket.size());
+       int randomMonkey = (int)(Math.random()*oneHundredMonkeys.size());
        int randomMerchant = (int)(Math.random()*monkeyMerchants.size());
        int randomCustomer = (int)(Math.random()*town.size());
-       int tempID = transactions.size()+1;
-       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer), tempID, this);
+       Monkey tempMonkey = oneHundredMonkeys.get(randomMonkey);
+       Transaction tempTrans = new Transaction(tempMonkey, monkeyMerchants.get(randomMerchant),town.get(randomCustomer),  tempMonkey.thisMonkeysOwner()  , i, this);
+                                          //(Monkey m, MonkeyMerchant mm, TownsFolk buyer, TownsFolk seller,int id, MonkeyMarket market)
        tempTrans.generateTransaction();
       // transactions.add(tempTrans);
       System.out.println(" monkey transaction #" + i + " created.");
@@ -128,11 +131,12 @@ public class MonkeyMarket {
        
        
        
-       int randomMonkey = (int)(Math.random()*monkeyBucket.size());
+       int randomMonkey = (int)(Math.random()*oneHundredMonkeys.size());
        int randomMerchant = (int)(Math.random()*monkeyMerchants.size());
        int randomCustomer = (int)(Math.random()*town.size());
        int tempID = transactions.size()+1;
-       Transaction tempTrans = new Transaction(monkeyBucket.get(randomMonkey), monkeyMerchants.get(randomMerchant),town.get(randomCustomer),tempID , this);
+       Monkey tempMonkey = oneHundredMonkeys.get(randomMonkey);
+       Transaction tempTrans = new Transaction(tempMonkey, monkeyMerchants.get(randomMerchant),town.get(randomCustomer),  tempMonkey.thisMonkeysOwner()  , tempID, this);
        tempTrans.generateTransaction();
        transactions.add(tempTrans);
       System.out.println(" monkey transaction #" + tempTrans.getTransactionID() + " created.");
@@ -160,8 +164,8 @@ public class MonkeyMarket {
      }
   
      // list activities of monkeys who were sold at least once
-      for(int i = 0; i < monkeyBucket.size(); i++){
-         monkeyBucket.get(i).printTransactions();
+      for(int i = 0; i < oneHundredMonkeys.size(); i++){
+         oneHundredMonkeys.get(i).printTransactions();
      }
      
        // list activities of monkeys who were sold at least once
@@ -182,7 +186,7 @@ public class MonkeyMarket {
  
   public ArrayList monkeys(){
       
-      return monkeyBucket;
+      return oneHundredMonkeys;
   } 
  
   public ArrayList town(){
@@ -216,6 +220,10 @@ public class MonkeyMarket {
       return tempTrans;
   } 
 
+ public int freeMarketMonkeys(){
+     
+     return availableMonkeys.size();
+ }
   
    public ArrayList peopleWhoOwnMonkeys(){
       
@@ -268,16 +276,16 @@ public class MonkeyMarket {
  }   // end report to the king  
   
  
-public void takeAMonkey(Monkey m){
-   for (int i = 0; i < monkeyBucket.size(); i ++) {
-     if(monkeyBucket.get(i).equals(m)){
-        monkeyBucket.remove(monkeyBucket.get(i) );  
+public void removeMonkey(Monkey m){
+   for (int i = 0; i < availableMonkeys.size(); i ++) {
+     if(availableMonkeys.get(i).equals(m)){
+        availableMonkeys.remove(availableMonkeys.get(i) );  
      }  
    }
 } 
  
- public void addAMonkey(Monkey m){
-   monkeyBucket.add(m); 
+ public void addMonkey(Monkey m){
+   availableMonkeys.add(m); 
 }
 
     private void timedOrders() {

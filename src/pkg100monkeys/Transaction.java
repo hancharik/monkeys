@@ -13,18 +13,20 @@ public class Transaction implements Runnable{
     
     public Monkey monkey;
     private MonkeyMerchant monkeyMerchant;
-    private TownsFolk townsFolk;
+    private TownsFolk buyer;
+    private TownsFolk seller;
     private int transactionId;
     private String record;
     private int increaseAmount;
     private MonkeyMarket market;
     
-    public Transaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id, MonkeyMarket market){
+    public Transaction(Monkey m, MonkeyMerchant mm, TownsFolk buyer, TownsFolk seller,int id, MonkeyMarket market){
      increaseAmount =  m.increasePrice(mm.getMarket().getGrowthRate());
       this.market = market;
     monkey = m;
     monkeyMerchant = mm;
-    townsFolk = t;
+    this.buyer = buyer;
+    this.seller = seller;
     transactionId = id; 
     
    // generateTransaction();
@@ -68,15 +70,18 @@ public class Transaction implements Runnable{
   
   
   
-    private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk t, int id){
+    private void recordTransaction(Monkey m, MonkeyMerchant mm, TownsFolk buyer, TownsFolk seller, int id){
       
-        String space = "     ";// String space = "\t";
-       String whatDoWeCallPeople = "";
+        String space = " ";// String space = "\t";
+       String whatDoWeCallBuyer = "";
+       String whatDoWeCallSeller = "";
        
        if(market.weRespectYourPrivacy()){
-             whatDoWeCallPeople = "ssn #" + t.getSSN();
+             whatDoWeCallBuyer = "ssn #" + buyer.getSSN();
+             whatDoWeCallSeller = "ssn #" + seller.getSSN();
          }else{
-           whatDoWeCallPeople = "villager #" + t.getSSN();
+           whatDoWeCallBuyer = "villager #" + buyer.getSSN();
+            whatDoWeCallSeller = "villager #" + seller.getSSN();
          }
        
        String pseudonym = "Samuel Clemens";
@@ -85,16 +90,10 @@ public class Transaction implements Runnable{
        }else{
          pseudonym = "monkey #" + m.getId();  
        }
-       
-                String temp1 = space + "transaction id #" + id + ":  " + pseudonym + "\nsold by merchant #" + mm.getMerchantId() 
-                    + whatDoWeCallPeople + "\nfor $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp2 = space + "transaction id #" + id + ":  " + pseudonym +  "sold by merchant #" + mm.getMerchantId() 
-                + whatDoWeCallPeople + "for $" + m.getPrice() + ", an increase of " + increaseAmount%100 + "%";
-                String temp3 = space + "trans id #" + id + "  " + pseudonym + " merchant #" + mm.getMerchantId() 
-                + whatDoWeCallPeople + " for $" + m.getPrice() + "( + " + increaseAmount%100 + "%)";
-                String temp4 = space + "trans id # " + id + "\t" + pseudonym +   "\tmerchant # " + mm.getMerchantId() 
-                + "\t" + whatDoWeCallPeople +"\t$" + m.getPrice() + "  ( + " + increaseAmount%100 + "%)";
-        record = temp4;
+        
+                String temp = space+"trans #" + id + ":" +   " merchant # " + mm.getMerchantId() + " helped " + whatDoWeCallSeller
+                        + " sell " + pseudonym + " to " + whatDoWeCallBuyer +" for $" + m.getPrice() + " (+" + increaseAmount%100 + "%)";
+        record = temp;
      
   } 
     public String printTransactionRecord(){
@@ -117,70 +116,39 @@ public class Transaction implements Runnable{
        generateTransaction();
     }
 
-    private void buyFromMarketTransaction() {
+
+    
+    private void buyFromMarketTransaction(){
         
         
-        monkeyMerchant.sellMonkey(monkey, townsFolk, transactionId);
-        //sleep(4000);
-     townsFolk.buyMonkey(monkey);
-     monkeyMerchant.recordTransaction(this);
-     monkey.newHome(townsFolk);
-     monkey.recordTransaction(this);
-     townsFolk.recordTransaction(this);
-      System.out.println("transaction id#" + transactionId + " generated");
-      //monkey.increasePrice();
-      // monkeyMerchant.printReceiptBook();
-      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId); 
-      
+        monkeyMerchant.marketSale(market,  buyer, monkey, this);
+        recordTransaction(monkey, monkeyMerchant, buyer, market.mainMarketAuction, transactionId); 
+   
       
     }  // end buy from market transaction
     
     
-    private void sellToMarketTransaction() {
+    private void sellToMarketTransaction(){
         
-        
-        monkeyMerchant.marketReturn(market, townsFolk, monkey);
-        //sleep(4000);
-     townsFolk.sellMonkey(monkey);
-     monkeyMerchant.recordTransaction(this);
-     monkey.freeAgent();
-     monkey.recordTransaction(this);
-     townsFolk.recordTransaction(this);
-      System.out.println("transaction id#" + transactionId + " generated");
-      //monkey.increasePrice();
-      // monkeyMerchant.printReceiptBook();
-      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId); 
-      
+         
+        monkeyMerchant.marketReturn(market, buyer, monkey, this);
+        recordTransaction(monkey, monkeyMerchant, market.mainMarketAuction, buyer, transactionId); 
+    
       
     }  // end sell to market transaction
     
     
-    
-    
-    
-
     private void p2pTransaction() {
         
-        
-     monkeyMerchant.p2pTransaction(monkey.thisMonkeysOwner(), townsFolk, monkey);
-     monkeyMerchant.recordTransaction(this);
-     monkey.newHome(townsFolk);
-     monkey.recordTransaction(this);
-     townsFolk.recordTransaction(this);
-      System.out.println("transaction id#" + transactionId + " generated");
-      //monkey.increasePrice();
-      // monkeyMerchant.printReceiptBook();
-      recordTransaction(monkey, monkeyMerchant, townsFolk, transactionId);   
+     
+        monkeyMerchant.p2pTransaction(seller, buyer, monkey, this);
+        recordTransaction(monkey, monkeyMerchant, buyer, seller, transactionId); 
       
     } // end merchant p2p transaction
 
     
     
-    
-    
-    
-    
-    
+
     
     
 } // end class
