@@ -91,11 +91,27 @@ public class Transaction implements Runnable{
          pseudonym = "monkey #" + m.getId();  
        }
         
-                String temp = space+"trans #" + id + ":" +   " merchant # " + mm.getMerchantId() + " helped " + whatDoWeCallSeller
-                        + " sell " + pseudonym + " to " + whatDoWeCallBuyer +" for $" + m.getPrice() + " (+" + increaseAmount%100 + "%)";
+        // this chaecks for the market identifier 999, and if it is, it changes the string in the transaction record
+            whatDoWeCallBuyer = callMeMarket(whatDoWeCallBuyer, buyer.getSSN());
+            whatDoWeCallSeller = callMeMarket(whatDoWeCallSeller, seller.getSSN());
+        
+        
+                String temp = space+"trans #" + id + ":" +   " merchant # " + mm.getMerchantId() + " helped " + whatDoWeCallBuyer
+                        + " buy " + pseudonym + " from " + whatDoWeCallSeller +" for $" + m.getPrice() + " (+" + increaseAmount%100 + "%)";
         record = temp;
      
   } 
+    
+    private String callMeMarket(String name, int id){
+       String tempName = name; 
+       if(id==999)
+       
+           tempName = "the market"; 
+       
+       return tempName;
+    }
+ 
+    
     public String printTransactionRecord(){
         
         return record;

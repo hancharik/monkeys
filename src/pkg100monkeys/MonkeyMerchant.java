@@ -158,7 +158,7 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
     
     public void marketSale(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee, Transaction trans) {
 
-        monkeyMarket.removeMonkey(monkee);
+        //monkeyMarket.removeMonkey(monkee);
         buyer.buyMonkey(monkee);
         monkee.newHome(buyer);
         recordTransaction(trans);
@@ -171,7 +171,7 @@ public class MonkeyMerchant extends JButton implements Runnable, ActionListener 
 
     public void marketReturn(MonkeyMarket monkeyMarket, TownsFolk buyer, Monkey monkee, Transaction trans) {
 
-        monkeyMarket.addMonkey(monkee);
+       // monkeyMarket.addMonkey(monkee);
         buyer.sellMonkey(monkee);
         monkee.freeAgent();
         recordTransaction(trans);

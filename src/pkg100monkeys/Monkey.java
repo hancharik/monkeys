@@ -152,24 +152,28 @@ public class Monkey extends JButton{
            
      }
       
-      
+      transactionList.add("\n\tthis monkey's provenance:\n the chronology of the ownership of this monkey:");
        
-       
+       for(int i = 0; i < owners.size(); i++){
+         int ownerNumber = i + 1;
+         transactionList.add("\t#" + ownerNumber + ":  " + listOfOwners().get(i));
+         
+     }
       
       String temp11;
       
       if(thisMonkeyHasAName){
-          if(owner.getSSN()!=999){
-      temp11 = fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
+          if(owner.getSSN()==999){
+      temp11 = fullName + " is worth $"  + price + ", owned by NO ONE (market monkey)" ;
       }else{
-       temp11 = fullName + " is worth $"  + price + ", owned by NO ONE" ; 
+        temp11 = fullName + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
       }
        }else{
-          if(owner.getSSN()!=999){
-      temp11 = "monkey #" + monkeyId + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;
-      }else{
-       temp11 = "monkey #" + monkeyId +" is worth $"  + price + ", owned by NO ONE" ; 
-      }   
+         if(owner.getSSN()==999){
+      temp11 = "monkey #" + monkeyId +" is worth $"  + price + ", owned by NO ONE (market monkey)" ; 
+     }else{
+      temp11 = "monkey #" + monkeyId + " is worth $"  + price + ", owned by ssn #" + owner.getSSN() + ".    " ;// 
+     }   
        }
       
       
@@ -177,6 +181,12 @@ public class Monkey extends JButton{
       
      
       transactionList.add(temp11);
+      
+      
+      
+      
+      
+      
       return transactionList;
        
       
@@ -212,8 +222,9 @@ public class Monkey extends JButton{
         
         owners.add(marketAuctionHouse);
         
-        owner = owners.get(0);
+        owner = marketAuctionHouse;
         openMarketMonkey = true;
+         
     }
   
   
@@ -222,17 +233,15 @@ public class Monkey extends JButton{
     public void newHome(TownsFolk owner){
       
         owners.add(owner);
-        owner = owners.get(owners.size()-1);
+        this.owner = owner;
         openMarketMonkey = false;
-         if(owner.getSSN()!=999){
-          openMarketMonkey = true;   
-         }
+         
   }
   
   public void freeAgent(){
       
       setOwnerToMarket();
-      openMarketMonkey = true;
+      
   }
   
   public boolean openMarketMonkey(){
@@ -330,7 +339,7 @@ public class Monkey extends JButton{
           case 7: fName = "Mopsy"; break;
           case 8: fName = "Dr. of Hugs"; break;  
           case 9: fName = "Peabody"; break;
-          case 10: fName = ""; break;  
+          case 10: fName = "Marge"; break;  
           case 11: fName = ""; break;
           case 12: fName = "Harry"; break;  
           case 13: fName = "Miss"; break;  
@@ -381,7 +390,7 @@ public class Monkey extends JButton{
           case 12: lName = "O'Keafe"; break;  
           case 13: lName = "Twain"; break;  
           case 14: lName = "Bush"; break;  
-          case 15: lName = "Peepers"; break;  
+          case 15: lName = "Peppers"; break;  
           case 16: lName = "Cronkite"; break;  
           case 17: lName = "Potter"; break;
           case 18: lName = "Oppenheimer"; break;  
@@ -438,7 +447,17 @@ public class Monkey extends JButton{
     
 }
 
-  
+ private ArrayList<String> listOfOwners(){
+     
+    ArrayList<String> list = new ArrayList(); 
+     
+     for(int i = 0; i < owners.size(); i++){
+         
+         list.add(owners.get(i).getName());
+         
+     }
+     return list;
+ } 
   
   
   
