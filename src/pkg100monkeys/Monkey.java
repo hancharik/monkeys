@@ -152,7 +152,8 @@ public class Monkey extends JButton{
            
      }
       
-      transactionList.add("\n\tthis monkey's provenance:\n the chronology of the ownership of this monkey:");
+      String provHeader = "\n\t" + fullName + "'s provenance:\n\tthe chronology of the ownership of:\n\t" + fullName;
+      transactionList.add(provHeader);
        
        for(int i = 0; i < owners.size(); i++){
          int ownerNumber = i + 1;

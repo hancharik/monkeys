@@ -66,9 +66,10 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     int monkeyOwners = 0;
     
     JTextArea showText;
-    JScrollPane scroll1;
-    1
-            
+    JScrollPane scroll;
+    int scrollx = 694;
+    int rowx = 300;
+           
     public MonkeyPanel(){
         
         super();
@@ -150,12 +151,12 @@ private void createUI(){
     ///////// this is a group
     
     resultLabel = new JLabel("<html><h1><font color='black' >" +  "100 monkeys"  + "</font></h1></html>");
-    resultLabel.setBounds(702,444,420,42);
+    resultLabel.setBounds(scrollx + 8,rowx,420,42);
     add(resultLabel);
     
     quickSimButton = new JButton("new quick sim");
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
-    quickSimButton.setBounds(694,504,160,40);
+    quickSimButton.setBounds(scrollx,rowx + 40,160,40);
     quickSimButton.setBackground(Color.yellow);
    //quickSimButton.setBackground(randomColor(theme));
     quickSimButton.addActionListener(this);
@@ -165,35 +166,35 @@ private void createUI(){
    
          marketButton = new JButton(  monkeysInTheMarket() +" market monkeys" );
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
-    marketButton.setBounds(694,504,160,40);
+    marketButton.setBounds(scrollx,rowx + 80,160,40);
     marketButton.setBackground(Color.yellow);
    //quickSimButton.setBackground(randomColor(theme));
     marketButton.addActionListener(this);
     add(marketButton);
     
         showPeopleButton = new JButton("show people");
-    showPeopleButton.setBounds(694,534,160,40);
+    showPeopleButton.setBounds(scrollx,rowx + 280,160,40);
     showPeopleButton.setBackground(Color.yellow);
-    //showPeopleButton.setVisible(false);
+    showPeopleButton.setVisible(false);
     showPeopleButton.addActionListener(this);
     add(showPeopleButton);
     
     showTransButton = new JButton("show transactions");
-    showTransButton.setBounds(694,584,160,40);
+    showTransButton.setBounds(scrollx,rowx + 160,160,40);
     showTransButton.setBackground(Color.yellow);
     //showTransButton.setVisible(false);
     showTransButton.addActionListener(this);
     add(showTransButton);
     
     showMonkeyNamesButton = new JButton("show monkey names");
-    showMonkeyNamesButton.setBounds(694,634,160,40);
+    showMonkeyNamesButton.setBounds(scrollx,rowx + 200,160,40);
     showMonkeyNamesButton.setBackground(Color.yellow);
     //showTransButton.setVisible(false);
     showMonkeyNamesButton.addActionListener(this);
     add(showMonkeyNamesButton);
     
     showHumanNamesButton = new JButton("show human names");
-    showHumanNamesButton.setBounds(694,684,160,40);
+    showHumanNamesButton.setBounds(scrollx,rowx + 240,160,40);
     showHumanNamesButton.setBackground(Color.yellow);
     //showTransButton.setVisible(false);
     showHumanNamesButton.addActionListener(this);
@@ -261,7 +262,7 @@ private void createUI(){
     showText.setBackground(Color.yellow);
     scroll = new JScrollPane (showText, 
    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scroll.setBounds(594,6,640,220);
+    scroll.setBounds(scrollx,6,640,220);
     add(scroll);
     
        ///////// this is a group
@@ -621,7 +622,7 @@ private void colorMarket(){
                 }
                 
                 if (obj == showTransButton){
-                    scroll.setBounds(594,6,640,420);
+                    scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
                    // showTransButton.setVisible(false);
@@ -642,7 +643,7 @@ private void colorMarket(){
                 }
                   if (obj == showMonkeyNamesButton){
                     
-                      scroll.setBounds(594,6,640,420);
+                      scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
                     //showTransButton.setVisible(false);
@@ -653,7 +654,7 @@ private void colorMarket(){
                 }
                   if (obj == showHumanNamesButton){
                     
-                      scroll.setBounds(594,6,640,420);
+                      scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
                     //showTransButton.setVisible(false);
@@ -764,6 +765,7 @@ private void colorMarket(){
 public void printResults(ArrayList<String> s){
      
     showText.setText(null);
+     scroll.setBounds(scrollx,6,640,260);
      htmlstart = "";//"<html><h2><font color='blue'>";
         htmlend = "\n";//"</font><h1></html>";
        for(int i = 0; i < s.size(); i++){
