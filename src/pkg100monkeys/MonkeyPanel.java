@@ -33,7 +33,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
     ArrayList<TownsFolk> peopleButtons;
     ArrayList<MonkeyMerchant> experiencedSellers;
-    ArrayList<MonkeyMerchant> merchantButtons8;8
+    ArrayList<MonkeyMerchant> merchantButtons;
     ArrayList<Monkey> monkeyButtons;
     ArrayList<Transaction> transactions;
     
