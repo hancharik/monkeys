@@ -115,6 +115,7 @@ private void createUI(){
     pageButton = new JButton("show page");
     pageButton.setBounds(scrollx,rowx + 320,160,40);
     pageButton.setBackground(Color.yellow);//.setBackground(randomColor(theme));
+    pageButton.setOpaque(true);
     //pageButton.setVisible(false);
    pageButton.addActionListener(this);
     add(pageButton);
@@ -223,6 +224,8 @@ private void createUI(){
     showHumanNamesButton = new JButton("show human names");
     showHumanNamesButton.setBounds(scrollx,rowx + 240,160,40);
     showHumanNamesButton.setBackground(Color.yellow);
+    showHumanNamesButton.setOpaque(true);
+    showHumanNamesButton.setBorderPainted(false);
     //showTransButton.setVisible(false);
     showHumanNamesButton.addActionListener(this);
     add(showHumanNamesButton);
