@@ -116,6 +116,7 @@ private void createUI(){
     pageButton.setBounds(scrollx,rowx + 320,160,40);
     pageButton.setBackground(Color.yellow);//.setBackground(randomColor(theme));
     pageButton.setOpaque(true);
+    pageButton.setBorderPainted(false);
     //pageButton.setVisible(false);
    pageButton.addActionListener(this);
     add(pageButton);
@@ -140,6 +141,8 @@ private void createUI(){
     startButton = new JButton("start");
     startButton.setBounds(888,244,120,40);
     startButton.setBackground(Color.yellow);//.setBackground(randomColor(theme));
+     startButton.setOpaque(true);
+    startButton.setBorderPainted(false);
     startButton.setVisible(false);
     startButton.addActionListener(this);
     add(startButton);
@@ -147,6 +150,8 @@ private void createUI(){
      runTimerButton = new JButton("run timer");
      runTimerButton.setBounds(1040,244,120,40);
      runTimerButton.setBackground(Color.yellow);
+      runTimerButton.setOpaque(true);
+    runTimerButton.setBorderPainted(false);
      runTimerButton.setVisible(false);
      runTimerButton.addActionListener(this);
     add( runTimerButton);
@@ -186,6 +191,8 @@ private void createUI(){
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
     quickSimButton.setBounds(scrollx,rowx + 40,160,40);
     quickSimButton.setBackground(Color.yellow);
+     quickSimButton.setOpaque(true);
+    quickSimButton.setBorderPainted(false);
    //quickSimButton.setBackground(randomColor(theme));
     quickSimButton.addActionListener(this);
     add(quickSimButton);
@@ -196,6 +203,8 @@ private void createUI(){
     //quickSimButton.setIcon(new ImageIcon("images/monkey.jpg"));
     marketButton.setBounds(scrollx,rowx + 80,160,40);
     marketButton.setBackground(Color.yellow);
+     marketButton.setOpaque(true);
+    marketButton.setBorderPainted(false);
    //quickSimButton.setBackground(randomColor(theme));
     marketButton.addActionListener(this);
     add(marketButton);
@@ -203,6 +212,8 @@ private void createUI(){
         showPeopleButton = new JButton("show people");
     showPeopleButton.setBounds(scrollx,rowx + 280,160,40);
     showPeopleButton.setBackground(Color.yellow);
+     showPeopleButton.setOpaque(true);
+    showPeopleButton.setBorderPainted(false);
     showPeopleButton.setVisible(false);
     showPeopleButton.addActionListener(this);
     add(showPeopleButton);
@@ -210,6 +221,8 @@ private void createUI(){
     showTransButton = new JButton("show transactions");
     showTransButton.setBounds(scrollx,rowx + 160,160,40);
     showTransButton.setBackground(Color.yellow);
+     showTransButton.setOpaque(true);
+    showTransButton.setBorderPainted(false);
     //showTransButton.setVisible(false);
     showTransButton.addActionListener(this);
     add(showTransButton);
@@ -217,6 +230,8 @@ private void createUI(){
     showMonkeyNamesButton = new JButton("show monkey names");
     showMonkeyNamesButton.setBounds(scrollx,rowx + 200,160,40);
     showMonkeyNamesButton.setBackground(Color.yellow);
+     showMonkeyNamesButton.setOpaque(true);
+    showMonkeyNamesButton.setBorderPainted(false);
     //showTransButton.setVisible(false);
     showMonkeyNamesButton.addActionListener(this);
     add(showMonkeyNamesButton);
@@ -247,6 +262,8 @@ private void createUI(){
     add(titleLabel);
     
       quickSimButton2 = new JButton("monkey pic 2");
+      quickSimButton2.setOpaque(true);
+    quickSimButton2.setBorderPainted(false);
       String picname = "images/monkey.jpg"; 
      // ImageIcon monkeyPic = new ImageIcon(getClass().getResource("images/monkey.jpg"));
                 // ImageIcon monkeyPic = new ImageIcon(this.getClass().getClassLoader().getResource("images/monkey.jpg"));
@@ -415,6 +432,8 @@ private JPanel monkeyPanel(){
        monkeyButtons.get(i).addActionListener(this);
         monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getId()); // monkeyButtons.get(i).setText("" + monkeyButtons.get(i).getPrice());
          monkeyButtons.get(i).setColor(randomColor(theme));
+         monkeyButtons.get(i).setOpaque(true);
+    monkeyButtons.get(i).setBorderPainted(false);
         monkeyButtons.get(i).setBackground(monkeyButtons.get(i).getColor());
        monkPan.add( monkeyButtons.get(i));
     }
@@ -470,6 +489,8 @@ private void colorMarket(){
     colorButtonsOfPeopleWithMonkeys();
     for(int i = 0; i < 100 ; i++){   
        peopleButtons.get(i).addActionListener(this);
+      peopleButtons.get(i).setOpaque(true);
+    peopleButtons.get(i).setBorderPainted(false);
       peepsWithMonkPan.add(peopleButtons.get(i));
       
     }
@@ -521,7 +542,8 @@ private void colorMarket(){
         int numberShowing = merchantButtons.get(i).transactionArray().size()-1;//b.setText("" + a.get(i).getPrice());
        merchantButtons.get(i).setText("" + numberShowing);//b.setText("" + a.get(i).getPrice());
       // merchantButtons.get(i).setBackground(randomColor(theme));
-        
+       merchantButtons.get(i).setOpaque(true);
+    merchantButtons.get(i).setBorderPainted(false);
         
        merchantButtons.get(i).addActionListener(this);
       mercPanel.add(merchantButtons.get(i));
