@@ -33,7 +33,7 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     ArrayList<TownsFolk> peopleWhoOwnMonkeys;
     ArrayList<TownsFolk> peopleButtons;
     ArrayList<MonkeyMerchant> experiencedSellers;
-    ArrayList<MonkeyMerchant> merchantButtons;
+    ArrayList<MonkeyMerchant> merchantButtons8;8
     ArrayList<Monkey> monkeyButtons;
     ArrayList<Transaction> transactions;
     
@@ -46,8 +46,11 @@ public class MonkeyPanel extends JPanel implements ActionListener{
     JButton showMonkeyNamesButton;
     JButton showHumanNamesButton;
     JButton marketButton;
+    JButton pageButton;
     
     SliderPanel sliderPanel;
+    
+    HomePage page;
     
     JPanel monkeyPanel;
     JPanel monkeyMerchantPanel;
@@ -88,6 +91,8 @@ private void createUI(){
     
     
     setLayout(null);
+    
+    page = new HomePage();
     monkeyButtons = new ArrayList();
     peopleWhoOwnMonkeys = new ArrayList();
     transactions = new ArrayList();
@@ -99,7 +104,29 @@ private void createUI(){
     
 
     
+        
+       ///////////////////////////////////////////////////////  
+    ///////////////////////////////////////////////////////
+    ///////// this is a group
     
+    
+    
+    
+    pageButton = new JButton("show page");
+    pageButton.setBounds(scrollx,rowx + 320,160,40);
+    pageButton.setBackground(Color.yellow);//.setBackground(randomColor(theme));
+    //pageButton.setVisible(false);
+   pageButton.addActionListener(this);
+    add(pageButton);
+    
+    page.setBounds(862,20,480,620);
+    page.setVisible(false);
+    add(page);
+    
+         
+    ///////// this is a group
+       ///////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////
     
     
     
@@ -597,6 +624,8 @@ private void colorMarket(){
         
                 if (obj == startButton){
 
+                     scroll.setVisible(true);
+                     page.setVisible(false);
                     setBackground(randomColor(theme));
                     showText.setText(null);
                     showText.setBackground(Color.yellow);
@@ -622,6 +651,9 @@ private void colorMarket(){
                 }
                 
                 if (obj == showTransButton){
+                    
+                     scroll.setVisible(true);
+                     page.setVisible(false);
                     scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
@@ -641,8 +673,24 @@ private void colorMarket(){
                      showPeopleButton.setVisible(false);
 
                 }
+                  if (obj == pageButton){
+                   
+                      titleLabel.setVisible(false);
+                    peopleWithMonkeysPanel.setVisible(false);
+                    //showTransButton.setVisible(false);
+                    showPeopleButton.setVisible(true);
+                     quickSimButton2.setVisible(false);
+                     scroll.setVisible(false);
+                     
+                     
+                     page.setVisible(true);
+                    
+
+                }
                   if (obj == showMonkeyNamesButton){
                     
+                      scroll.setVisible(true);
+                     page.setVisible(false);
                       scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
@@ -654,6 +702,8 @@ private void colorMarket(){
                 }
                   if (obj == showHumanNamesButton){
                     
+                       scroll.setVisible(true);
+                     page.setVisible(false);
                       scroll.setBounds(scrollx,6,640,420);
                     titleLabel.setVisible(false);
                     peopleWithMonkeysPanel.setVisible(false);
@@ -693,6 +743,8 @@ private void colorMarket(){
              
                  if (obj ==  monkeyButtons.get(i)){
                      
+                     scroll.setVisible(true);
+                     page.setVisible(false);
                      showPeople();
                      
                       showText.setBackground(monkeyButtons.get(i).getColor());
@@ -712,6 +764,8 @@ private void colorMarket(){
              
                  if (obj ==  merchantButtons.get(i)){
                      
+                     scroll.setVisible(true);
+                     page.setVisible(false);
                      showPeople();
                      
                      showText.setBackground(merchantButtons.get(i).getBackground());
@@ -732,6 +786,8 @@ private void colorMarket(){
              
                  if (obj ==  peopleButtons.get(i)){
                      
+                     scroll.setVisible(true);
+                     page.setVisible(false);
                        showPeople();
                      
                      showText.setBackground(peopleButtons.get(i).getBackground());
@@ -785,6 +841,7 @@ private void showPeople(){
                     showTransButton.setVisible(true);
                     quickSimButton2.setVisible(false);
                     titleLabel.setVisible(false);
+                    page.setVisible(false);
 }
 
 
