@@ -191,6 +191,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         yoyo.setLayout(new GridLayout(1, 10));
         for(int yy = 0; yy < 10; yy++){
             JButton jb = new JButton();
+           
             themeDemoButtons.add(jb);
             yoyo.add(themeDemoButtons.get(yy));
         }
@@ -204,6 +205,7 @@ public class SliderPanel  extends JPanel implements ChangeListener{
         yoyo.setLayout(new GridLayout(1, 10));
         for(int yy = 10; yy < 20; yy++){
             JButton jb = new JButton();
+         
             themeDemoButtons.add(jb);
             yoyo.add(themeDemoButtons.get(yy));
         }
@@ -214,10 +216,14 @@ public void colorButtons(){
     
     for(int y = 0; y < themeDemoButtons.size(); y++){
             themeDemoButtons.get(y).setBackground(monkeyPanel.randomColor(monkeyPanel.theme)); 
+            themeDemoButtons.get(y).setOpaque(true);
+            themeDemoButtons.get(y).setBorderPainted(false);
         }
    
     for(int y = 0; y < sliders.size(); y++){
             sliders.get(y).setBackground(monkeyPanel.randomColor(monkeyPanel.theme)); 
+            sliders.get(y).setOpaque(true);
+            //sliders.get(y)..setBorderPainted(false);
         }
     
     
